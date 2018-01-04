@@ -4,14 +4,14 @@
  * @date: 04.Jan.2018
  * @author: Manish Budhraja
  * */
-"use strict";
-import Idx from "../../utilities/Idx";
-import { NavigationActions } from "react-navigation";
-import { AppNavigator } from "../../config/navigator";
-import { REHYDRATE } from "redux-persist";
+'use strict';
+import Idx from '../../utilities/Idx';
+import { NavigationActions } from 'react-navigation';
+import { AppNavigator } from '../../config/navigator';
+import { REHYDRATE } from 'redux-persist';
 
 // Import required actions Actions
-import * as Actions from "../Actions";
+import * as Actions from '../Actions';
 
 // Action Creators
 export const goBack = () => ({ type: Actions.GOBACK });
@@ -27,33 +27,33 @@ const initialState = AppNavigator.router.getStateForAction(
     index: 0,
     actions: [
       NavigationActions.navigate({
-        routeName: "Loader"
+        routeName: 'Loader'
       })
     ]
   })
 );
 
 export default function reducer(state = initialState, action) {
-  let firstState = "Demo";
+  let firstState = 'Demo';
   // console.log(action)
   if (action.payload && action.payload.user) {
-    firstState = action.payload.user.newInstall ? "Walkthrough" : "Login";
+    firstState = action.payload.user.newInstall ? 'Walkthrough' : 'Login';
     if (action.payload.user.isUpdatePending && action.payload.user.userDetails) {
-        switch (action.payload.user.userDetails.role) {
-          case "Consumer":
-            firstState = "CompleteProfile";
-            break;
-          default:
-            firstState = "CompleteProfileService";
-            break;
-        }
-    }else if (!action.payload.user.isUpdatePending && action.payload.user.userDetails) {
-      if (action.payload.user.userDetails.role == "Consumer") {
-        firstState = "Dashboard";
-      } else if (action.payload.user.userDetails.admin_verified == "accepted") {
-        firstState = "ServiceDashboard";
+      switch (action.payload.user.userDetails.role) {
+        case 'Consumer':
+          firstState = 'CompleteProfile';
+          break;
+        default:
+          firstState = 'CompleteProfileService';
+          break;
+      }
+    } else if (!action.payload.user.isUpdatePending && action.payload.user.userDetails) {
+      if (action.payload.user.userDetails.role == 'Consumer') {
+        firstState = 'Dashboard';
+      } else if (action.payload.user.userDetails.admin_verified == 'accepted') {
+        firstState = 'ServiceDashboard';
       } else {
-        firstState = "UnderReview";
+        firstState = 'UnderReview';
       }
     }
   }
@@ -63,7 +63,7 @@ export default function reducer(state = initialState, action) {
       return AppNavigator.router.getStateForAction(
         NavigationActions.reset({
           index: 0,
-          actions: [NavigationActions.navigate({ routeName: "Login" })]
+          actions: [NavigationActions.navigate({ routeName: 'Login' })]
         }),
         state
       );
@@ -82,18 +82,14 @@ export default function reducer(state = initialState, action) {
       );
 
     case Actions.GOBACK:
-      return AppNavigator.router.getStateForAction(
-        NavigationActions.back(),
-        state
-      );
+      return AppNavigator.router.getStateForAction(NavigationActions.back(), state);
 
     case REHYDRATE:
       if (
         action.payload.nav &&
-        (action.payload.nav.routes[action.payload.nav.routes.length - 1]
-          .routeName === "ActiveService" ||
-          action.payload.nav.routes[action.payload.nav.routes.length - 1]
-            .routeName === "Invoice")
+        (action.payload.nav.routes[action.payload.nav.routes.length - 1].routeName ===
+          'ActiveService' ||
+          action.payload.nav.routes[action.payload.nav.routes.length - 1].routeName === 'Invoice')
       ) {
         return AppNavigator.router.getStateForAction(action, state);
       } else {
@@ -118,7 +114,7 @@ export default function reducer(state = initialState, action) {
       return AppNavigator.router.getStateForAction(
         NavigationActions.reset({
           index: 0,
-          actions: [NavigationActions.navigate({ routeName: "Login" })]
+          actions: [NavigationActions.navigate({ routeName: 'Login' })]
         }),
         state
       );

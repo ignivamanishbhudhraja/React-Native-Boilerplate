@@ -16,35 +16,36 @@ import { ToastActionsCreators } from 'react-native-redux-toast';
 import * as userActions from '../redux/modules/user';
 import { IntrospectionFragmentMatcher } from 'react-apollo';
 import { ApolloLink, concat } from 'apollo-link';
-import link, { httpLink }  from './apolloLinks';
+import link, { httpLink } from './apolloLinks';
 import cache from './apolloCache';
 
 // Apollo Client Object
-let graphqlClient = null; 
+let graphqlClient = null;
 
 /**
-* @function to setup graphql client & configurations.
-*/
+ * @function to setup graphql client & configurations.
+ */
 
 export default function configureClient(store) {
-    if (!graphqlClient){
-        /*
+  if (!graphqlClient) {
+    /*
         * @Create apollo client instance.
-        */  
-        graphqlClient = new ApolloClient({
-            link : link(store),
-            cache: cache.restore(),
-            connectToDevTools: process.env.NODE_ENV !== 'production', // Dev tools will work only in development mode.
-            queryDeduplication: true
-        });
+        */
 
-        window.__APOLLO_CLIENT__ = graphqlClient;
-    }
-    return graphqlClient;
-};
+    graphqlClient = new ApolloClient({
+      link: link(store),
+      cache: cache.restore(),
+      connectToDevTools: process.env.NODE_ENV !== 'production', // Dev tools will work only in development mode.
+      queryDeduplication: true
+    });
+
+    window.__APOLLO_CLIENT__ = graphqlClient;
+  }
+  return graphqlClient;
+}
 
 /**
-* @function to get graphql client
-*/
+ * @function to get graphql client
+ */
 
 export const getGraphQlClient = () => graphqlClient;

@@ -5,35 +5,35 @@
  * @author: Manish Budhraja
  * */
 
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
-import { connect } from 'react-redux'
-import routes from "./routes";
+import { connect } from 'react-redux';
+import routes from './routes';
 import { BackHandler, Alert } from 'react-native';
 
-/* *
+/**
  * React Navigation's Configuration
  * */
 const stackNavigatorConfiguration = {
-  headerMode: "none",
-  mode:"card",
+  headerMode: 'none',
+  mode: 'card',
   navigationOptions: {
-    gesturesEnabled: false,
-  },
+    gesturesEnabled: false
+  }
 };
 
-/* *
- * @function: Making React navigation's stack navigator with routes and configuration 
+/**
+ * @function: Making React navigation's stack navigator with routes and configuration
  * */
 const AppNavigator = StackNavigator(routes, stackNavigatorConfiguration);
 
-/* *
- * @function: Providing dispatch and nav state into app 
+/**
+ * @function: Providing dispatch and nav state into app
  * */
-class AppWithNavigationState extends Component{ 
-  constructor(props){
+class AppWithNavigationState extends Component {
+  constructor(props) {
     super(props);
-  }  
+  }
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
@@ -48,44 +48,44 @@ class AppWithNavigationState extends Component{
         'Exit App',
         'Are you sure you want to exit?',
         [
-          {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-          {text: 'OK', onPress: () => {
-            BackHandler.exitApp() ; 
-            return true;
-          }},
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel'
+          },
+          {
+            text: 'OK',
+            onPress: () => {
+              BackHandler.exitApp();
+              return true;
+            }
+          }
         ],
         { cancelable: false }
-      )
+      );
       return true;
     }
     dispatch(NavigationActions.back());
     return true;
   };
-  
+
   render() {
     const { dispatch, nav } = this.props;
-    return (
-      <AppNavigator
-        navigation={addNavigationHelpers({ dispatch, state: nav })}
-      />
-    );
+    return <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />;
   }
 }
 
-export { AppNavigator }
+export { AppNavigator };
 
-/* *
- * @function: Providing redux store's data in props 
+/**
+ * @function: Providing redux store's data in props
  * */
 
 const mapStateToProps = state => ({
   nav: state.nav
-})
+});
 
-
-/* *
- * @function: Connects a React component to a Redux store 
+/**
+ * @function: Connects a React component to a Redux store
  * */
-export default connect(
-  mapStateToProps
-)(AppWithNavigationState)
+export default connect(mapStateToProps)(AppWithNavigationState);

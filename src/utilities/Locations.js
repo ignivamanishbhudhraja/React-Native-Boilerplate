@@ -6,8 +6,8 @@
  * */
 
 'use strict';
-import React, { Component } from "react";
-import { Alert, InteractionManager } from "react-native";
+import React, { Component } from 'react';
+import { Alert, InteractionManager } from 'react-native';
 import Permissions from 'react-native-permissions';
 import Constants from '../constants';
 import Geocoder from 'react-native-geocoder';
@@ -82,12 +82,17 @@ export function errorPopUp(title, msg) {
   Alert.alert(
     title,
     msg,
-    [{
-      text: "Enable",
-      onPress: () => { Permissions.openSettings() }
-    }, {
-      text: "Cancel",
-    }],
+    [
+      {
+        text: 'Enable',
+        onPress: () => {
+          Permissions.openSettings();
+        }
+      },
+      {
+        text: 'Cancel'
+      }
+    ],
     { cancelable: false }
   );
 }

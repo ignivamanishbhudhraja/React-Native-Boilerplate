@@ -10,15 +10,15 @@
 module.exports = {
   BaseStyle: require('./BaseStyle'),
   Colors: require('./Colors'),
-	Fonts: require('./Fonts'),
+  Fonts: require('./Fonts'),
   i18n: require('./i18n'),
   Images: require('./Images'),
-  MapStyle : require('./MapStyle'),
-  DevKeys : require('./DevlopmentKeys'),
-  Delta : {
-    latitude:0.0922,
-    longitude:0.0421
+  MapStyle: require('./MapStyle'),
+  DevKeys: require('./DevlopmentKeys'),
+  Delta: {
+    latitude: 0.0922,
+    longitude: 0.0421
   },
-  RequestResponseTime : 20, // seconds
-  ResendOTPTime : 59 // seconds
+  RequestResponseTime: 20, // seconds
+  ResendOTPTime: 59 // seconds
 };

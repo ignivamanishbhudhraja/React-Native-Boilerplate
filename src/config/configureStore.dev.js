@@ -5,41 +5,40 @@
  * @author: Manish Budhraja
  * */
 
-import { compose, applyMiddleware, createStore, combineReducers } from "redux";
-import { persistStore, autoRehydrate } from "redux-persist";
+import { compose, applyMiddleware, createStore, combineReducers } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
 import { REHYDRATE, PURGE, persistCombineReducers } from 'redux-persist';
-import { AsyncStorage, Platform } from "react-native";
-import devToolsEnhancer from "remote-redux-devtools";
-import thunk from "redux-thunk";
-import reducer from "../redux";
+import { AsyncStorage, Platform } from 'react-native';
+import devToolsEnhancer from 'remote-redux-devtools';
+import thunk from 'redux-thunk';
+import reducer from '../redux';
 
-/* *
- * @function: Configuring and creating redux store 
+/**
+ * @function: Configuring and creating redux store
  * */
 export default function configureStore() {
-    /* *
-     * @function: Creating redux store
-     * */
-    const store = createStore(
-        reducer(),
-        compose(
-            devToolsEnhancer({
-                name: Platform.OS,
-                hostname: "localhost",
-                port: 5678
-            })
-        ),
-        applyMiddleware(thunk)
-    );
+  /**
+   * @function: Creating redux store
+   * */
+  const store = createStore(
+    reducer(),
+    compose(
+      devToolsEnhancer({
+        name: Platform.OS,
+        hostname: 'localhost',
+        port: 5678
+      })
+    ),
+    applyMiddleware(thunk)
+  );
 
+  /**
+   * @function: Persisting store for save all store's data except blacklisted reducers in device's memory
+   * */
+  let persistor = persistStore(store);
 
-    /* *
-     * @function: Persisting store for save all store's data except blacklisted reducers in device's memory
-     * */
-    let persistor = persistStore(store);
-
-    /* *
-     * @return: returning store and storage persistor when it's successfully created 
-     * */
-    return { persistor, store }
+  /**
+   * @return: returning store and storage persistor when it's successfully created
+   * */
+  return { persistor, store };
 }

@@ -72,7 +72,7 @@ function idx<Ti, Tv>(input: Ti, accessor: (input: Ti) => Tv): ?Tv {
 }
 
 let nullPattern: ?RegExp;
-function isNullPropertyAccessError({message}: TypeError): boolean {
+function isNullPropertyAccessError({ message }: TypeError): boolean {
   if (!nullPattern) {
     nullPattern = getInvalidPropertyAccessErrorPattern(null);
   }
@@ -80,7 +80,7 @@ function isNullPropertyAccessError({message}: TypeError): boolean {
 }
 
 let undefinedPattern: ?RegExp;
-function isUndefinedPropertyAccessError({message}: TypeError): boolean {
+function isUndefinedPropertyAccessError({ message }: TypeError): boolean {
   if (!undefinedPattern) {
     undefinedPattern = getInvalidPropertyAccessErrorPattern(undefined);
   }
@@ -91,7 +91,9 @@ function isUndefinedPropertyAccessError({message}: TypeError): boolean {
  * Use `new Function(...)` to avoid minifying "$object$" and "$property$".
  */
 // eslint-disable-next-line no-new-func, flowtype/no-weak-types
-const getInvalidPropertyAccessErrorPattern: any = new Function('$object$', `
+const getInvalidPropertyAccessErrorPattern: any = new Function(
+  '$object$',
+  `
   try {
     $object$.$property$;
   } catch (error) {
@@ -103,6 +105,7 @@ const getInvalidPropertyAccessErrorPattern: any = new Function('$object$', `
     );
   }
   throw new Error('Expected property access on ' + $object$ + ' to throw.');
-`);
+`
+);
 
 module.exports = idx;

@@ -6,13 +6,12 @@
  * */
 
 // Common
-import Loader                   from "../components/common/Loader";
-import Demo                   from "../containers";
-
+import Loader from '../components/common/Loader';
+import Demo from '../containers';
 
 // export list of routes.
-export default routes = {
-    // Common
-    Loader                                      : { screen: Loader },
-    Demo    : { screen: Demo },
-};
+export default (routes = {
+  // Common
+  Loader: { screen: Loader },
+  Demo: { screen: Demo }
+});
