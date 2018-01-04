@@ -1,0 +1,12 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '8.0'
+#pod 'FirebaseInstanceID', "2.0.0"
+
+target 'ReactNativeBoilerplate' do
+  # Pods for ReactNativeBoilerplate
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  #pod 'RSKImageCropper'
+  #pod 'QBImagePickerController'
+  #pod 'GoogleMaps'
+end 
