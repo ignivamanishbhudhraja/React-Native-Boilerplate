@@ -5,11 +5,19 @@
  * @author: Vishal Kumar
  */
 
-'use strict';
-
-import React, { PropTypes, Component } from "react";
-import { View, StyleSheet, TextInput, Text, Image, TouchableOpacity, Platform } from "react-native";
-import Constants from '../../constants';
+"use strict";
+/* @flow */
+import React, { Component } from "react";
+import {
+  View,
+  StyleSheet,
+  TextInput,
+  Text,
+  Image,
+  TouchableOpacity,
+  Platform
+} from "react-native";
+import Constants from "../../constants";
 
 export default class InputText extends Component {
   constructor(props) {
@@ -20,8 +28,8 @@ export default class InputText extends Component {
   }
 
   /**
-  * Text-input onFocus method. 
-  */
+   * Text-input onFocus method.
+   */
 
   onFocus() {
     this.setState({ isFocused: true });
@@ -31,20 +39,20 @@ export default class InputText extends Component {
   }
 
   /**
-  * Text-input focus method for return key.
-  */
+   * Text-input focus method for return key.
+   */
 
   focus() {
     this.refs.inputBox.focus();
   }
 
   /**
-  * Text-input onChange method.
-  */
+   * Text-input onChange method.
+   */
 
   onChange(event) {
     if (this.props.onChange) {
-      this.props.onChange(event)
+      this.props.onChange(event);
     }
   }
 
@@ -54,37 +62,49 @@ export default class InputText extends Component {
         style={[
           styles.containerStyle,
           this.props.containerStyle,
-          { borderBottomColor: (this.state.isFocused) ? Constants.Colors.AccentColor : Constants.Colors.GhostWhite }
+          {
+            borderBottomColor: this.state.isFocused
+              ? Constants.Colors.AccentColor
+              : Constants.Colors.GhostWhite
+          }
         ]}
       >
         <Text style={[styles.labelStyle, this.props.labelStyle]}>
           {this.props.labelText}
         </Text>
 
-        <View style={{
-          flexDirection: 'row',
-          alignItems: 'center'
-        }}>
-          {
-            this.props.image0 &&
-            <TouchableOpacity hitSlop={Constants.HIT_SLOP} onPress={this.props.onImagePress}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center"
+          }}
+        >
+          {this.props.image0 && (
+            <TouchableOpacity
+              hitSlop={Constants.HIT_SLOP}
+              onPress={this.props.onImagePress}
+            >
               <Image
                 resizeMode="contain"
                 source={this.props.image0}
                 style={[styles.image0Style, this.props.image0Style]}
               />
             </TouchableOpacity>
-          }
+          )}
           <TextInput
-            ref='inputBox'
+            ref="inputBox"
             autoFocus={this.props.autoFocus}
-            autoCorrect={this.props.autoCorrect ? this.props.children.autoCorrect : false}
-            autoCapitalize={this.props.autoCapitalize ? this.props.autoCapitalize : "none"}
+            autoCorrect={
+              this.props.autoCorrect ? this.props.children.autoCorrect : false
+            }
+            autoCapitalize={
+              this.props.autoCapitalize ? this.props.autoCapitalize : "none"
+            }
             keyboardType={this.props.keyboardType}
             placeholder={this.props.placeholder}
             placeholderTextColor={this.props.placeholderTextColor}
             onChangeText={this.props.onChangeText}
-            onChange={(event) => this.onChange(event)}
+            onChange={event => this.onChange(event)}
             value={this.props.value}
             editable={!this.props.editable}
             onFocus={() => this.onFocus()}
@@ -97,8 +117,7 @@ export default class InputText extends Component {
             selectionColor={Constants.Colors.AccentColor}
             underlineColorAndroid={Constants.Colors.Transparent}
           />
-          {
-            this.props.image &&
+          {this.props.image && (
             <TouchableOpacity onPress={this.props.onImagePress}>
               <Image
                 resizeMode="contain"
@@ -106,7 +125,7 @@ export default class InputText extends Component {
                 style={[styles.imageStyle, this.props.imageStyle]}
               />
             </TouchableOpacity>
-          }
+          )}
         </View>
       </View>
     );
@@ -130,7 +149,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       android: {
         height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 7,
-        marginLeft : -Constants.BaseStyle.DEVICE_WIDTH / 100 * 1
+        marginLeft: -Constants.BaseStyle.DEVICE_WIDTH / 100 * 1
       },
       ios: {
         height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 4

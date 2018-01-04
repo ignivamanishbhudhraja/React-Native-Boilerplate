@@ -4,7 +4,7 @@
  * @date: 18.09.2017
  * @author: Manish Budhiraja
  * */
-
+/* @flow */
 "use strict";
 import {
   StyleSheet,
@@ -25,10 +25,22 @@ export default class StarRating extends Component {
     this.state = {
       rating: this.props.rating ? this.props.rating : 0,
       max: this.props.max ? this.props.max : 5,
-      iconWidth: this.props.iconWidth? this.props.iconWidth:Platform.OS==="ios"?(Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8):(Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8),
-      iconHeight: this.props.iconHeight? this.props.iconHeight: Platform.OS==="ios"?(Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8):(Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8),
-      iconSelected: this.props.iconSelected? this.props.iconSelected: Constants.Images.ic_small_star,
-      iconUnselected: this.props.iconUnselected? this.props.iconUnselected: Constants.Images.ic_small_grey_star,
+      iconWidth: this.props.iconWidth
+        ? this.props.iconWidth
+        : Platform.OS === "ios"
+          ? Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8
+          : Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8,
+      iconHeight: this.props.iconHeight
+        ? this.props.iconHeight
+        : Platform.OS === "ios"
+          ? Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8
+          : Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8,
+      iconSelected: this.props.iconSelected
+        ? this.props.iconSelected
+        : Constants.Images.ic_small_star,
+      iconUnselected: this.props.iconUnselected
+        ? this.props.iconUnselected
+        : Constants.Images.ic_small_grey_star,
       editable: this.props.editable != null ? this.props.editable : false
     };
   }
@@ -67,9 +79,7 @@ export default class StarRating extends Component {
       );
     }
     return (
-      <View style={[this.props.style, { flexDirection: "row" }]}>
-        {icons}
-      </View>
+      <View style={[this.props.style, { flexDirection: "row" }]}>{icons}</View>
     );
   }
 }

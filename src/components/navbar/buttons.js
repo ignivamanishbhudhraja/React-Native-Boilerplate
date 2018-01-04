@@ -1,12 +1,15 @@
-import React from 'react';
-import {
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+/**
+ * @file: buttons.js
+ * @description: Button for navigation.
+ * @date: 04.Jan.2018
+ * @author: Manish Budhiraja
+ */
 
-import PropTypes from 'prop-types'
-import styles from './styles';
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
+/* @flow */
+import PropTypes from "prop-types";
+import styles from "./styles";
 
 export default function NavbarButton(props) {
   const {
@@ -28,29 +31,28 @@ export default function NavbarButton(props) {
       accessibilityLabel={accessibilityLabel}
     >
       <View style={style}>
-        <Text style={[styles.navBarButtonText, { color: tintColor }]}>{title}</Text>
+        <Text style={[styles.navBarButtonText, { color: tintColor }]}>
+          {title}
+        </Text>
       </View>
     </TouchableOpacity>
   );
 }
 
 NavbarButton.propTypes = {
-  style: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.array,
-  ]),
+  style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   tintColor: PropTypes.string,
   title: PropTypes.string,
   handler: PropTypes.func,
   disabled: PropTypes.bool,
   accessible: PropTypes.bool,
-  accessibilityLabel: PropTypes.string,
+  accessibilityLabel: PropTypes.string
 };
 
 NavbarButton.defaultProps = {
   style: {},
-  title: '',
-  tintColor: '#0076FF',
+  title: "",
+  tintColor: "#0076FF",
   disabled: false,
-  handler: () => ({}),
+  handler: () => ({})
 };

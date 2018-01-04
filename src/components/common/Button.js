@@ -4,47 +4,44 @@
  * @date: 18.09.2017
  * @author: Manish Budhiraja
  * */
+/* @flow */
+"use strict";
 
-'use strict';
+import React, { Component } from "react";
+import { Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
-import React, { Component } from 'react';
-import {
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image
-} from 'react-native';
+import Constants from "../../constants";
 
-import Constants from '../../constants';
-
-export default class Button extends Component{
+export default class Button extends Component {
   // Default render function
-  render(){
-    let { buttonStyle, image, imageStyle, text, textStyle, image2, imageStyle2 } = this.props;
-    return(
+  render() {
+    let {
+      buttonStyle,
+      image,
+      imageStyle,
+      text,
+      textStyle,
+      image2,
+      imageStyle2
+    } = this.props;
+    return (
       <TouchableOpacity
         activeOpacity={0.9}
         style={[styles.buttonStyle, buttonStyle]}
-        disabled={(this.props.disabled !== undefined && this.props.disabled == true) ? true : false} 
+        disabled={
+          this.props.disabled !== undefined && this.props.disabled == true
+            ? true
+            : false
+        }
         onPress={this.props.onPress}
       >
-        {
-          image &&
-          <Image
-            source={image}
-            style={[styles.imageStyle, imageStyle]}
-          />
-        }
-        <Text style={[styles.text, textStyle]}>
-          {text}
-        </Text>
-        {
-          image2 &&
-          <Image
-            source={image2}
-            style={[styles.imageStyle2, imageStyle2]}
-          />
-        }
+        {image && (
+          <Image source={image} style={[styles.imageStyle, imageStyle]} />
+        )}
+        <Text style={[styles.text, textStyle]}>{text}</Text>
+        {image2 && (
+          <Image source={image2} style={[styles.imageStyle2, imageStyle2]} />
+        )}
       </TouchableOpacity>
     );
   }
@@ -52,12 +49,12 @@ export default class Button extends Component{
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    height: Constants.BaseStyle.DEVICE_HEIGHT*7/100,
+    height: Constants.BaseStyle.DEVICE_HEIGHT * 7 / 100,
     backgroundColor: Constants.Colors.AccentColor,
     // width: Constants.BaseStyle.DEVICE_WIDTH*85/100,
-    alignItems:'center',
-    justifyContent: 'center',
-    flexDirection: 'row'
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row"
   },
   imageStyle: {
     height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.5,

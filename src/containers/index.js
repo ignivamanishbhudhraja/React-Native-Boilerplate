@@ -1,31 +1,27 @@
+// @flow
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-import { Avatar } from './components/common';
+/* "javascript.validate.enable": false,
+"flow.useNPMPackagedFlow": true*/
+import React, { Component } from "react";
+import { AppRegistry, StyleSheet, Text, View } from "react-native";
 
 type Props = {
-  
+  foo: number,
+  bar?: string
 };
 
-type State = {
-  
-};
-
-export default class FlowExample extends React.Component<Props, State> {
-
-  multiply = (n1: number, n2: number): number => {
-    return n1 * n2;
-  };
-
+export default class NextFoodie extends React.Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{multiply("14", 14)}</Text>
+        <Text style={styles.welcome}>{"Welcome to React Native!"}</Text>
+        <Text style={styles.instructions}>
+          To get started, edit index.android.js
+        </Text>
+        <Text style={styles.instructions}>
+          Double tap R on your keyboard to reload,{"\n"}
+          Shake or press menu button for dev menu
+        </Text>
       </View>
     );
   }
@@ -34,18 +30,18 @@ export default class FlowExample extends React.Component<Props, State> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    textAlign: "center",
+    margin: 10
   },
   instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5
+  }
 });

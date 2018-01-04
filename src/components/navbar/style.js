@@ -1,4 +1,11 @@
-import Constants from '../../src/constants';
+/**
+ * @file: style.js
+ * @description: Navigation Style.
+ * @date: 04.Jan.2018
+ * @author: Manish Budhiraja
+ */
+/* @flow */
+import Constants from "../../src/constants";
 import { Platform } from "react-native";
 
 const NAV_BAR_HEIGHT = Constants.BaseStyle.DEVICE_HEIGHT === 812 ? 84 : 64;
@@ -19,7 +26,7 @@ module.exports = {
   },
   statusBar: {
     height: STATUS_BAR_HEIGHT,
-    backgroundColor: Constants.Colors.White,
+    backgroundColor: Constants.Colors.White
   },
   navBar: {
     ...Platform.select({
@@ -30,44 +37,47 @@ module.exports = {
         height: NAV_BAR_HEIGHT
       }
     }),
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'stretch',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "stretch",
     width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 101
   },
   customTitle: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     bottom: 7,
-    alignItems: 'center',
+    alignItems: "center"
   },
   navBarButtonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'stretch',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "stretch"
   },
   navBarButton: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center"
   },
   navBarButtonText: {
     fontSize: 17,
-    letterSpacing: 0.5,
+    letterSpacing: 0.5
   },
   navBarTitleContainer: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: Constants.BaseStyle.DEVICE_HEIGHT === 812 ? Constants.BaseStyle.DEVICE_HEIGHT / 100 * 4.6 : Constants.BaseStyle.DEVICE_HEIGHT / 100 * 3
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop:
+      Constants.BaseStyle.DEVICE_HEIGHT === 812
+        ? Constants.BaseStyle.DEVICE_HEIGHT / 100 * 4.6
+        : Constants.BaseStyle.DEVICE_HEIGHT / 100 * 3
   },
   navBarTitleText: {
     color: Constants.Colors.White,
-    ...Constants.Fonts.contentBold,
-  },
+    ...Constants.Fonts.contentBold
+  }
 };

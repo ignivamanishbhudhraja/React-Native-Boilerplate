@@ -4,7 +4,7 @@
  * @date: 10.11.2017
  * @author: Ashima Narula
  * */
-
+/* @flow */
 "use strict";
 
 import React, { Component } from "react";
@@ -108,12 +108,12 @@ const styles = StyleSheet.create({
   cancelButton: {
     textAlign: "left",
     marginLeft: 15,
-    color : Constants.Colors.Black
+    color: Constants.Colors.Black
   },
   doneButton: {
     textAlign: "right",
     marginRight: 15,
-    color : Constants.Colors.Black
+    color: Constants.Colors.Black
   },
   picker: {
     backgroundColor: Constants.Colors.White

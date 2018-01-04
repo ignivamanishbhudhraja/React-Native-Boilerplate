@@ -4,25 +4,33 @@
  * @date: 18.09.2017
  * @author: Manish Budhiraja
  */
+/* @flow */
 
-
-'use strict';
+"use strict";
 import React, { PropTypes, Component } from "react";
-import { View, Image, StyleSheet, Dimensions, TextInput, Text, Platform } from "react-native";
+import {
+  View,
+  Image,
+  StyleSheet,
+  Dimensions,
+  TextInput,
+  Text,
+  Platform
+} from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import Constants from '../../constants';
+import Constants from "../../constants";
 
 class FormTextInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFocused: false,
+      isFocused: false
     };
   }
 
   /**
-  * Text-input onFocus method.
-  */
+   * Text-input onFocus method.
+   */
 
   onFocus() {
     this.setState({ isFocused: true });
@@ -32,45 +40,67 @@ class FormTextInput extends Component {
   }
 
   /**
-  * Text-input focus method for return key.
-  */
+   * Text-input focus method for return key.
+   */
 
   focus() {
     this.refs.inputBox.focus();
   }
 
   /**
-  * Text-input onChange method.
-  */
+   * Text-input onChange method.
+   */
 
   onChange(event) {
     if (this.props.onChange) {
-      this.props.onChange(event)
+      this.props.onChange(event);
     }
   }
 
   render() {
     return (
-      <View style={[styles.containerStyle, this.props.style, { borderColor: (this.state.isFocused) ? Constants.Colors.AccentColor : Constants.Colors.BlurGrey }]}>
-        {
-          this.props.icon &&
-          <Image resizeMode="contain" source={this.props.icon} style={[styles.iconStyle, this.props.iconStyle]} />
-        }
-        {
-          this.props.price &&
-          <Text style={[styles.price, this.props.priceStyle]}>{Constants.i18n.common.pound}</Text>
-        }
+      <View
+        style={[
+          styles.containerStyle,
+          this.props.style,
+          {
+            borderColor: this.state.isFocused
+              ? Constants.Colors.AccentColor
+              : Constants.Colors.BlurGrey
+          }
+        ]}
+      >
+        {this.props.icon && (
+          <Image
+            resizeMode="contain"
+            source={this.props.icon}
+            style={[styles.iconStyle, this.props.iconStyle]}
+          />
+        )}
+        {this.props.price && (
+          <Text style={[styles.price, this.props.priceStyle]}>
+            {Constants.i18n.common.pound}
+          </Text>
+        )}
         <View style={{ flex: 1 }}>
           <TextInput
-            ref='inputBox'
-            autoCorrect={this.props.autoCorrect ? this.props.children.autoCorrect : false}
-            autoCapitalize={this.props.autoCapitalize ? this.props.autoCapitalize : "none"}
+            ref="inputBox"
+            autoCorrect={
+              this.props.autoCorrect ? this.props.children.autoCorrect : false
+            }
+            autoCapitalize={
+              this.props.autoCapitalize ? this.props.autoCapitalize : "none"
+            }
             keyboardType={this.props.keyboardType}
             placeholder={this.props.placeholder}
             //placeholder={this.props.secureTextEntry?"••••••••":this.props.placeholder}
-            placeholderTextColor={this.props.placeholderTextColor ? this.props.placeholderTextColor : Constants.Colors.Gray}
+            placeholderTextColor={
+              this.props.placeholderTextColor
+                ? this.props.placeholderTextColor
+                : Constants.Colors.Gray
+            }
             onChangeText={this.props.onChangeText}
-            onChange={(event) => this.onChange(event)}
+            onChange={event => this.onChange(event)}
             value={this.props.value}
             onFocus={() => this.onFocus()}
             onBlur={() => this.setState({ isFocused: false })}
@@ -92,14 +122,14 @@ class FormTextInput extends Component {
 const styles = StyleSheet.create({
   containerStyle: {
     borderBottomWidth: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     ...Platform.select({
       android: {
-        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 7,
+        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 7
       },
       ios: {
-        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 5,
+        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 5
       }
     })
   },
@@ -107,10 +137,10 @@ const styles = StyleSheet.create({
     ...Constants.Fonts.regular,
     ...Platform.select({
       android: {
-        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 7,
+        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 7
       },
       ios: {
-        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 5,
+        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 5
       }
     })
   },
@@ -125,7 +155,6 @@ const styles = StyleSheet.create({
     marginRight: 5
   }
 });
-
 
 FormTextInput.defaultProps = {
   autoFocus: false

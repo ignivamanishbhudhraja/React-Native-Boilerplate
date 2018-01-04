@@ -4,9 +4,10 @@
  * @date: 03.Jan.2018
  * @author: Manish Budhiraja
  */
-'use strict';
-import React, { Component } from 'react';
-import { StyleSheet, Image, } from 'react-native';
+/* @flow */
+"use strict";
+import React, { Component } from "react";
+import { StyleSheet, Image } from "react-native";
 import Constants from "../../constants";
 
 const ShadowView = props => {
@@ -18,16 +19,16 @@ const ShadowView = props => {
 };
 
 ShadowView.defaultProps = {
-  containerStyle : {},
-}
+  containerStyle: {}
+};
 
 const styles = StyleSheet.create({
-  container:{
-    flex  : 1,
-    width : Constants.BaseStyle.DEVICE_WIDTH,
-    height : Constants.BaseStyle.DEVICE_HEIGHT,
+  container: {
+    flex: 1,
+    width: Constants.BaseStyle.DEVICE_WIDTH,
+    height: Constants.BaseStyle.DEVICE_HEIGHT,
     ...Constants.BaseStyle.SHADOW_STYLE
-  },
+  }
 });
 
 export default ShadowView;

@@ -4,12 +4,12 @@
  * @date: 03.Jan.2018
  * @author: Manish Budhiraja
  */
+/* @flow */
 
+"use strict";
 
-'use strict';
-
-import React, { Component } from 'react';
-import { StyleSheet, Image, } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, Image } from "react-native";
 import Constants from "../../constants";
 
 export default class Background extends Component {
@@ -17,10 +17,13 @@ export default class Background extends Component {
     super(props);
   }
 
-  // Default Render Function 
+  // Default Render Function
   render() {
-    return ( 
-      <Image source={Constants.Images.background} style={[styles.container, this.props.style]}>
+    return (
+      <Image
+        source={Constants.Images.background}
+        style={[styles.container, this.props.style]}
+      >
         {this.props.children}
       </Image>
     );
@@ -28,9 +31,9 @@ export default class Background extends Component {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex  : 1,
-    width : Constants.BaseStyle.DEVICE_WIDTH,
-    height : Constants.BaseStyle.DEVICE_HEIGHT,
-  },
+  container: {
+    flex: 1,
+    width: Constants.BaseStyle.DEVICE_WIDTH,
+    height: Constants.BaseStyle.DEVICE_HEIGHT
+  }
 });
