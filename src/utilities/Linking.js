@@ -5,7 +5,7 @@
  * @author: Manish Budhraja
  * */
 'use strict';
-import { Linking, Platform } from 'react-native';
+import { Linking } from 'react-native';
 
 export function telephone(phoneNumber) {
   Linking.canOpenURL('tel:' + phoneNumber)
@@ -20,7 +20,6 @@ export function telephone(phoneNumber) {
 }
 
 export function webpage(url) {
-  console.log('here is the URL ******** ', url);
   Linking.canOpenURL(url)
     .then(supported => {
       if (!supported) {

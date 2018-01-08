@@ -6,4 +6,8 @@
  * */
 
 'use strict';
-module.exports = {};
+
+module.exports = {
+  driver: require('../assets/images/driver.png'),
+  user: require('../assets/images/user.png')
+};

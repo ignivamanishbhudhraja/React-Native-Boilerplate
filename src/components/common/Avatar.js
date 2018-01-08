@@ -1,137 +1,89 @@
 /**
  * @file: Avatar.js
- * @description: Back Button Module for Navigation Bar.
- * @date: 18.09.2017
+ * @description: Avatar Image for application.
+ * @date: 05.Jan.2018
  * @author: Manish Budhiraja
  */
+
 /* @flow */
-"use strict";
+
+'use strict';
 
 // Import React & React Native Components, JS Libraries, Other Libraries and Modules.
+import React from 'react';
+import { Image, View, StyleSheet } from 'react-native';
+import Constants from '../../constants';
+import Connection from '../../config/connection';
+import PropTypes from 'prop-types';
 
-import React, { Component } from "react";
-import {
-  Image,
-  TouchableHighlight,
-  Text,
-  StyleSheet,
-  View,
-  TouchableWithoutFeedback,
-  TouchableOpacity
-} from "react-native";
-import Placeholder from "rn-placeholder";
-import Constants from "../../constants";
-import Connection from "../../config/connection";
+type Props = {
+  container: View.propTypes.style,
+  avatarStyle: Image.propTypes.style,
+  originalAvatarStyle: View.propTypes.style,
+  user: PropTypes.object,
+  localPath: string
+};
 
-export default class Avatar extends Component {
-  constructor(props) {
-    super(props);
-    this.avatarName = "";
-    this.avatarColor = null;
-    this.state = {
-      isReady: true
-    };
+const Avatar = (props: Props) => {
+  let { user, localPath, avatarStyle, container } = props;
+  let defaultImage = '';
+  if (localPath !== '') {
+    return <Image source={{ uri: localPath }} style={[defaultStyles.avatarStyle, avatarStyle]} />;
   }
 
-  renderAvatar() {
-    let userPlaceholder = null;
-    if (this.props.localPath) {
-      return (
-        <Image
-          source={{ uri: this.props.localPath.uri }}
-          style={[defaultStyles.avatarStyle, this.props.avatarStyle]}
-        />
-      );
+  if (!user || user.photo == '') {
+    switch (user.role) {
+      case 'user':
+        defaultImage = Constants.Images.user;
+        break;
+      case 'business':
+        defaultImage = Constants.Images.user;
+        break;
+      case 'driver':
+        defaultImage = Constants.Images.driver;
+        break;
+      default:
+        defaultImage = Constants.Images.user;
+        break;
     }
-
-    if (this.props.user && this.props.user.photo !== "") {
-      return (
-        <Image
-          source={{ uri: Connection.getMedia(this.props.user.photo) }}
-          style={[
-            defaultStyles.avatarStyle,
-            this.props.avatarStyle,
-            this.props.originalAvatarStyle
-          ]}
-          onLoadStart={e => this.setState({ isReady: true })}
-        />
-      );
-    }
-
     return (
-      <View style={[defaultStyles.container, this.props.container]}>
-        <Image
-          source={
-            this.props.isCompany
-              ? Constants.Images.plus
-              : Constants.Images.customer
-          }
-          style={[defaultStyles.avatarStyle, this.props.avatarStyle]}
-        />
+      <View style={[defaultStyles.container, container]}>
+        <Image source={defaultImage} style={[defaultStyles.avatarStyle, avatarStyle]} />
       </View>
     );
   }
 
-  renderInitials() {
-    const userName = this.props.user.full_name || "";
-    const name = userName.toUpperCase().split(" ");
-    if (name.length === 1) {
-      this.avatarName = `${name[0].charAt(0)}`;
-    } else if (name.length > 1) {
-      this.avatarName = `${name[0].charAt(0)}${name[1].charAt(0)}`;
-    } else {
-      this.avatarName = "";
-    }
+  let hasImage = user ? (user.photo !== '' || user.photo !== null ? true : false) : false;
+  if (hasImage) {
     return (
-      <View
-        style={[
-          defaultStyles.avatarStyle,
-          { backgroundColor: Constants.Colors.LightGray },
-          this.props.avatarStyle
-        ]}
-      >
-        <Text style={[defaultStyles.textStyle, this.props.textStyle]}>
-          {this.avatarName}
-        </Text>
+      <View>
+        <Image
+          source={{ uri: Connection.getMedia(user.photo) }}
+          style={[defaultStyles.avatarStyle, avatarStyle]}
+        />
       </View>
     );
   }
+};
 
-  render() {
-    return <View>{this.renderAvatar()}</View>;
-  }
-}
-
-const defaultStyles = {
+const defaultStyles = StyleSheet.create({
   avatarStyle: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 14,
-    height: Constants.BaseStyle.DEVICE_WIDTH / 100 * 14
-  },
-  textStyle: {
-    color: "#fff",
-    backgroundColor: "transparent",
-    ...Constants.Fonts.regular
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 30,
+    height: Constants.BaseStyle.DEVICE_WIDTH / 100 * 30
   },
   container: {
-    padding: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1,
     backgroundColor: Constants.Colors.PrimaryColor
   }
-};
+});
 
 Avatar.defaultProps = {
-  user: {
-    full_name: null,
-    photo: null
-  },
-  isCompany: false,
+  localPath: '',
+  user: null,
   avatarStyle: {},
-  textStyle: {}
+  originalAvatarStyle: {},
+  container: {}
 };
 
-Avatar.propTypes = {
-  user: React.PropTypes.object,
-  avatarStyle: Image.propTypes.style,
-  textStyle: Text.propTypes.style
-};
+module.exports = Avatar;

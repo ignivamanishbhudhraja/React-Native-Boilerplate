@@ -4,14 +4,15 @@
  * @date: 04.Jan.2018
  * @author: Manish Budhraja
  * */
+/* eslint-disable */
+'use strict';
 
-import RestClient from './RestClient';
 import Constants from '../constants';
 import Idx from './Idx';
-import { Linking, Platform } from 'react-native';
+import { Linking } from 'react-native';
 
 export function getDirections(source, destination) {
-  return new Promise(function(fulfill, reject) {
+  return new Promise(function(resolve, reject) {
     let directionsUrl =
       'https://maps.googleapis.com/maps/api/directions/json?origin=' +
       source.latitude +
@@ -27,21 +28,16 @@ export function getDirections(source, destination) {
       .then(response => response.json())
       .then(responseJson => {
         if (responseJson.status === 'OK') {
-          let directionArray = [];
-          let steps = [];
-          if (Idx(responseJson, _ => _.routes[0].legs[0].steps)) {
-            steps = responseJson.routes[0].legs[0].steps;
-          }
-          if (responseJson.routes.length) {
+          if (responseJson.routes.length && Idx(responseJson, _ => _.routes[0].legs[0].steps)) {
             let steps = decodeMapPoints(responseJson.routes[0].overview_polyline.points);
-            return fulfill(steps);
+            return resolve(steps);
           }
         } else {
-          reject();
+          reject(null);
         }
       })
       .catch(error => {
-        reject();
+        reject(null);
       });
   });
 }
@@ -63,7 +59,7 @@ export function googleMapNavigate(source, destination) {
 
 export function decodeMapPoints(t, e) {
   for (
-    var n, o, u = 0, l = 0, r = 0, d = [], h = 0, i = 0, a = null, c = Math.pow(10, e || 5);
+    let n, o, u = 0, l = 0, r = 0, d = [], h = 0, i = 0, a = null, c = Math.pow(10, e || 5);
     u < t.length;
 
   ) {
@@ -76,6 +72,7 @@ export function decodeMapPoints(t, e) {
     (o = 1 & i ? ~(i >> 1) : i >> 1), (l += n), (r += o), d.push([l / c, r / c]);
   }
   return (d = d.map(function(t) {
+    // eslint-disable-line no-undef
     return { latitude: t[0], longitude: t[1] };
   }));
 }

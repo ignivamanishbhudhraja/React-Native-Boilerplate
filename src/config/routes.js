@@ -9,9 +9,9 @@
 import Loader from '../components/common/Loader';
 import Demo from '../containers';
 
-// export list of routes.
-export default (routes = {
+// Export application routes.
+export default {
   // Common
   Loader: { screen: Loader },
   Demo: { screen: Demo }
-});
+};

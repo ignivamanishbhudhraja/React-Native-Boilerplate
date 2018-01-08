@@ -4,19 +4,24 @@
  * @date: 04.Jan.2018
  * @author: Manish Budhraja
  * */
+
 /* @flow */
-import React from "react";
-import { NetInfo, Platform, View } from "react-native";
-import { Provider } from "react-redux";
-import configureStore from "./config/configureStore";
-import { checkPermissions } from "./utilities/Locations";
-import { ApolloProvider } from "react-apollo";
-import configureClient, { getGraphQlClient } from "./config/apolloClientConfig";
+'use strict';
+
+import React from 'react';
+import { NetInfo, Platform, View, StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
+import configureStore from './config/configureStore';
+import { checkPermissions } from './utilities/Locations';
+import { ApolloProvider } from 'react-apollo';
+import configureClient, { getGraphQlClient } from './config/apolloClientConfig';
 // import { pushNotificationInit, pushNotificationRemove } from "./utilities/PushNotification";
-import Root from "./Root";
-import Notification from "react-native-in-app-notification";
-import Constants from "./constants";
-import "./utilities/StringEn";
+import Root from './Root';
+import Notification from 'react-native-in-app-notification';
+import Constants from './constants';
+import './utilities/StringEn';
+import { PersistGate } from 'redux-persist/es/integration/react';
+import { Loader } from './components/common';
 
 /**
  * @function: Configuring redux store.
@@ -34,20 +39,15 @@ if (!client) {
 /*
  * Main component
  * */
-type Props = {
-  foo: number,
-  bar?: string
-};
 
-class Application extends React.Component<Props> {
-  notification: ?View;
+class Application extends React.Component<{}> {
+  notification: ?any;
   constructor(props: Object) {
     super(props);
     /**
      * @function: Initiliazing location utility
      * */
     checkPermissions(store);
-    this.notification = null;
   }
 
   componentDidMount() {
@@ -63,7 +63,7 @@ class Application extends React.Component<Props> {
    * @function: Initiliazing push notification utility
    * */
   initilizePushNotification = () => {
-    if (Platform.OS === "ios") {
+    if (Platform.OS === 'ios') {
       //pushNotificationInit(store)
     } else {
       //pushNotificationInit(store, this.notification)
@@ -76,16 +76,14 @@ class Application extends React.Component<Props> {
 
   handleNetwork = () => {
     function handleFirstConnectivityChange(isConnected) {
-      NetInfo.isConnected.removeEventListener(
-        "change",
-        handleFirstConnectivityChange
-      );
+      NetInfo.isConnected.removeEventListener('change', handleFirstConnectivityChange);
     }
-    NetInfo.isConnected.addEventListener(
-      "change",
-      handleFirstConnectivityChange
-    );
+    NetInfo.isConnected.addEventListener('change', handleFirstConnectivityChange);
     NetInfo.isConnected.fetch().then(isConnected => {});
+  };
+
+  onBeforeLift = () => {
+    // take some action before the gate lifts
   };
 
   /**
@@ -93,13 +91,19 @@ class Application extends React.Component<Props> {
    * */
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={styles.container}>
         <ApolloProvider client={client}>
           <Provider store={store}>
-            <Root />
+            <PersistGate
+              loading={<Loader />}
+              onBeforeLift={this.onBeforeLift}
+              persistor={persistor}
+            >
+              <Root />
+            </PersistGate>
           </Provider>
         </ApolloProvider>
-        {Platform.OS !== "android" && (
+        {Platform.OS !== 'android' && (
           <Notification
             backgroundColour={Constants.Colors.White}
             ref={ref => {
@@ -111,5 +115,12 @@ class Application extends React.Component<Props> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: Constants.Colors.White
+  }
+});
 
 export default Application;

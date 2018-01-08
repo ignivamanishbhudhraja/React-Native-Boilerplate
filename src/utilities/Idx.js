@@ -56,6 +56,9 @@
  * All this machinery exists due to the fact that an existential operator does
  * not currently exist in JavaScript.
  */
+
+/* eslint-disable */
+
 function idx<Ti, Tv>(input: Ti, accessor: (input: Ti) => Tv): ?Tv {
   try {
     return accessor(input);

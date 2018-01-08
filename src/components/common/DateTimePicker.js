@@ -1,42 +1,54 @@
 /*
  * @file: ModalTimePicker.js
  * @description: Contains time picker modal.
- * @date: 10.11.2017
- * @author: Ashima Narula
+ * @date: 05.Jan.2018
+ * @author: Manish Budhiraja
  * */
+
 /* @flow */
-"use strict";
 
-import React, { Component } from "react";
+'use strict';
 
+import React from 'react';
 import {
   View,
-  PickerIOS,
   StyleSheet,
-  Modal,
   TouchableOpacity,
   Text,
   Platform,
-  DatePickerIOS
-} from "react-native";
+  DatePickerIOS,
+  TimePickerAndroid
+} from 'react-native';
+import Constants from '../../constants';
+import PropTypes from 'prop-types';
 
-import Constants from "../../constants";
+type Props = {
+  closePicker: PropTypes.func.isRequired,
+  open: boolean
+};
 
-export default class ModalTimePicker extends Component {
-  constructor(props) {
+type State = {
+  date: PropTypes.object,
+  date2: PropTypes.object,
+  open: boolean,
+  timeZoneOffsetInHours: number
+};
+
+export default class DateTimePicker extends React.Component<Props, State> {
+  static defaultProps = {
+    open: false,
+    date: new Date(),
+    date2: new Date()
+  };
+
+  constructor(props: Object) {
     super(props);
-
     this.state = {
       date: new Date(),
       date2: new Date(),
-      openTimePicker: this.props.openTimePicker
+      open: props.open,
+      timeZoneOffsetInHours: 6
     };
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.openTimePicker !== nextProps.openTimePicker) {
-      this.setState({ openTimePicker: nextProps.openTimePicker });
-    }
   }
 
   // Default render function
@@ -45,26 +57,22 @@ export default class ModalTimePicker extends Component {
       <View style={styles.mainViewContainer}>
         <View style={styles.modalContainer}>
           <View style={styles.modalButtonsContainer}>
-            <TouchableOpacity
-              style={{ flex: 1 }}
-              onPress={() => this.props.onHideModalTimePicker()}
-            >
-              <Text style={styles.cancelButton}>Cancel</Text>
+            <TouchableOpacity style={styles.container} onPress={() => this.props.closePicker(null)}>
+              <Text style={styles.cancelButton}>{'Cancel'}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={{ flex: 1 }}
+              style={styles.container}
               onPress={() => {
-                this.props.onHideModalTimePicker();
-                this.props.onTimeModalValueChange(this.state.date);
+                this.props.closePicker(this.state.date);
               }}
             >
-              <Text style={styles.doneButton}>Done</Text>
+              <Text style={styles.doneButton}>{'Done'}</Text>
             </TouchableOpacity>
           </View>
 
           <View style={styles.picker}>
-            {Platform.OS === "ios" ? (
+            {Platform.OS === 'ios' ? (
               <DatePickerIOS
                 date={this.state.date}
                 mode="time"
@@ -89,8 +97,11 @@ export default class ModalTimePicker extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   mainViewContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
     width: Constants.BaseStyle.DEVICE_WIDTH,
     height: Constants.BaseStyle.DEVICE_HEIGHT
@@ -98,20 +109,16 @@ const styles = StyleSheet.create({
   modalContainer: {
     width: Constants.BaseStyle.DEVICE_WIDTH,
     height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 30,
-    position: "absolute",
+    position: 'absolute',
     bottom: 0
   },
-  modalButtonsContainer: {
-    flexDirection: "row",
-    backgroundColor: "white"
-  },
   cancelButton: {
-    textAlign: "left",
+    textAlign: 'left',
     marginLeft: 15,
     color: Constants.Colors.Black
   },
   doneButton: {
-    textAlign: "right",
+    textAlign: 'right',
     marginRight: 15,
     color: Constants.Colors.Black
   },

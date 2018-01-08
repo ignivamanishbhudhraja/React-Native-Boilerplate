@@ -1,15 +1,23 @@
 /*
  * @file: Loader.js
  * @description: Top header component for showing statusbar, back button, title etc
- * @date: 18.09.2017
+ * @date: 05.Jan.2018
  * @author: Manish Budhiraja
  * */
-/* @flow */
-import React, { Component } from "react";
-import { View } from "react-native";
-import Spinner from "react-native-loading-spinner-overlay";
 
-class Loader extends Component {
+import React from 'react';
+import Spinner from 'react-native-loading-spinner-overlay';
+import ReactMixin from 'react-mixin';
+import TimerMixin from 'react-timer-mixin';
+
+// type Props = {
+// };
+
+// type State = {
+//   visible: boolean
+// };
+
+class Loader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,8 +26,10 @@ class Loader extends Component {
   }
   componentDidMount() {
     let context = this;
-    setTimeout(function() {
-      context.setState({ visible: false });
+    context.setTimeout(() => {
+      context.setState({
+        visible: false
+      });
     }, 1000);
   }
 
@@ -27,5 +37,7 @@ class Loader extends Component {
     return <Spinner visible={this.state.visible} />;
   }
 }
+
+ReactMixin(Loader.prototype, TimerMixin);
 
 module.exports = Loader;

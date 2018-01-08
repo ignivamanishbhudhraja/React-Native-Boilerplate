@@ -5,10 +5,9 @@
  * @author: Manish Budhraja
  * */
 
-import { compose, applyMiddleware, createStore, combineReducers } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
-import { REHYDRATE, PURGE, persistCombineReducers } from 'redux-persist';
-import { AsyncStorage, Platform } from 'react-native';
+import { compose, applyMiddleware, createStore } from 'redux';
+import { persistStore } from 'redux-persist';
+import { Platform } from 'react-native';
 import devToolsEnhancer from 'remote-redux-devtools';
 import thunk from 'redux-thunk';
 import reducer from '../redux';

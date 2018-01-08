@@ -5,32 +5,17 @@
  * @author: Manish Budhraja
  * */
 'use strict';
-import React, { Component } from 'react';
-import { Platform, AppState } from 'react-native';
-import FCM, {
-  FCMEvent,
-  RemoteNotificationResult,
-  WillPresentNotificationResult,
-  NotificationType
-} from 'react-native-fcm';
-import { mongoid } from 'mongoid-js';
+import { AppState } from 'react-native';
+import FCM, { FCMEvent } from 'react-native-fcm';
 import _ from 'lodash';
 import Idx from './Idx';
-import moment from 'moment';
 import * as userActions from '../redux/modules/user';
-import * as bookingActions from '../redux/modules/bookings';
-import { goTo, resetToDashboard } from '../redux/modules/nav';
 import Constants from '../constants';
 let notificationListener, refreshTokenListener;
 let appState = AppState.currentState;
 
 /*
-* Notification Types - 
-* Type - 1 // All booking actions
-* Type - 2 // Quote accepted by consumer
-* Type - 3 // Activate / Deactivate User from Admin Panel.
-* Type - 4 // New SOS Request
-* Type - 5 // Socket disconnect or manul cancel by consumer
+* Notification Types -
 */
 
 /**
@@ -54,7 +39,6 @@ export function pushNotificationInit(store, notificationRef) {
 
   // Receive Notification in kill state, inactive state or bankground state.
   FCM.getInitialNotification().then(res => {
-    let context = this;
     console.log('getInitialNotification==> ', res);
     if (Idx(res, _ => _.fcm.action)) {
       setTimeout(() => {
@@ -66,7 +50,6 @@ export function pushNotificationInit(store, notificationRef) {
   // Receive Notification in forground
   notificationListener = FCM.on(FCMEvent.Notification, async res => {
     console.log('notificationListener==> ', res);
-    let context = this;
     // If current state is active show local notification.
     if (appState === 'active') {
       notificationRef.show({
@@ -77,12 +60,9 @@ export function pushNotificationInit(store, notificationRef) {
         vibrate: true
       });
     }
-
-    if (res.notificationType === '2' || res.notificationType === '5' || res.opened_from_tray) {
-      setTimeout(function() {
-        onNotificationRedirection(res, store);
-      }, 500);
-    }
+    setTimeout(function() {
+      onNotificationRedirection(res, store);
+    }, 500);
   });
 
   // Fcm token may not be available on first load, catch it here
@@ -101,8 +81,8 @@ export function pushNotificationInit(store, notificationRef) {
 export function onNotificationRedirection(res, store) {
   if (Idx(store.getState().user, _ => _.userDetails.auth.token)) {
     let userRole = store.getState().user.userDetails.role;
-    let dashboard = '',
-      notification = 'ProviderNotifications';
+    let notification = 'Notifications',
+      dashboard = ''; // eslint-disable-line no-unused-vars
 
     // Check user role.
     switch (userRole) {
@@ -118,94 +98,9 @@ export function onNotificationRedirection(res, store) {
     // Navigate user based on their role to specific job.
     switch (parseInt(res.notificationType)) {
       case 1: // Takes user to Notifications page.
-        if (
-          store.getState().bookings.isSoS == true ||
-          store.getState().nav.routes[store.getState().nav.routes.length - 1].routeName ===
-            'ActiveService' ||
-          store.getState().nav.routes[store.getState().nav.routes.length - 1].routeName ===
-            'Invoice' ||
-          store.getState().nav.routes[store.getState().nav.routes.length - 1].routeName ===
-            notification
-        ) {
-          break;
-        } else {
-          store.dispatch(
-            goTo({
-              route: notification
-            })
-          );
-          break;
-        }
         break;
-
-      case 2: // Take user to active booking page.
-        if (userRole === 'Consumer') {
-          break;
-        }
-        if (
-          store.getState().bookings.isSoS == true ||
-          store.getState().nav.routes[store.getState().nav.routes.length - 1].routeName ===
-            'ActiveService' ||
-          store.getState().nav.routes[store.getState().nav.routes.length - 1].routeName ===
-            'Invoice'
-        ) {
-          break;
-        } else {
-          store.dispatch(bookingActions.setActiveBooking(JSON.parse(res.bookingDetails)));
-          store.dispatch(
-            resetToDashboard({
-              route: 'ActiveService'
-            })
-          );
-          break;
-        }
-        break;
-
-      case 5: // . Notification for Manully Cancel or socket disconnected SOS booking to provider (if job is accepted by provider) and take provider to dashboard screen .
-        if (userRole === 'Consumer') {
-          break;
-        } else if (
-          store.getState().nav.routes[store.getState().nav.routes.length - 1].routeName ===
-          'ActiveService'
-        ) {
-          store.dispatch(bookingActions.setActiveBooking(null));
-          store.dispatch(bookingActions.setSoSInBooking(false));
-          store.dispatch(
-            resetToDashboard({
-              route: dashboard
-            })
-          );
-          break;
-        }
       default:
-        //Takes user to dashboard.
-        if (
-          store.getState().bookings.isSoS == true ||
-          store.getState().nav.routes[store.getState().nav.routes.length - 1].routeName ===
-            'ActiveService' ||
-          store.getState().nav.routes[store.getState().nav.routes.length - 1].routeName ===
-            'Invoice' ||
-          store.getState().nav.routes[store.getState().nav.routes.length - 1].routeName ===
-            dashboard
-        ) {
-          break;
-        } else {
-          if (userRole === 'Consumer') {
-            store.dispatch(
-              goTo({
-                route: notification
-              })
-            );
-            break;
-          } else {
-            store.dispatch(
-              resetToDashboard({
-                route: dashboard
-              })
-            );
-            break;
-          }
-        }
+        // Take User to Dashboard.
         break;
     }
   }

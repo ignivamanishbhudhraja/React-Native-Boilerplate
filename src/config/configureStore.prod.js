@@ -1,13 +1,12 @@
 /*
- * @file: configureStore.prod.js
- * @description: Configure/creating redux store with thunk,reducer etc
+ * @file: configureStore.js
+ * @description: configure redux store
  * @date: 04.Jan.2018
  * @author: Manish Budhraja
  * */
 
-import { compose, applyMiddleware, createStore } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
-import { AsyncStorage, Platform } from 'react-native';
+import { applyMiddleware, createStore } from 'redux';
+import { persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import reducer from '../redux';
 
@@ -18,17 +17,15 @@ export default function configureStore() {
   /**
    * @function: Creating redux store
    * */
-  const store = createStore(reducer(), compose(autoRehydrate()), applyMiddleware(thunk));
+  const store = createStore(reducer(), applyMiddleware(thunk));
 
   /**
    * @function: Persisting store for save all store's data except blacklisted reducers in device's memory
    * */
-  persistStore(store, { blacklist: ['app', 'toast'], storage: AsyncStorage }, () => {
-    let storeData = store.getState();
-  });
+  let persistor = persistStore(store);
 
   /**
-   * @return: returning store when it's successfully created
+   * @return: returning store and storage persistor when it's successfully created
    * */
-  return store;
+  return { persistor, store };
 }

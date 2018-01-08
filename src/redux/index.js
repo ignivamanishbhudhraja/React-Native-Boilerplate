@@ -5,19 +5,18 @@
  * @author: Manish Budhraja
  * */
 
-import { AsyncStorage, Platform } from 'react-native';
-import { REHYDRATE, PURGE, persistCombineReducers } from 'redux-persist';
+import { AsyncStorage } from 'react-native';
+import { persistCombineReducers } from 'redux-persist';
 import { toastReducer as toast } from 'react-native-redux-toast';
-import { combineReducers } from 'redux';
 import app from './modules/app';
 import nav from './modules/nav';
 import user from './modules/user';
 import location from './modules/location';
-import bookings from './modules/bookings';
 
 const config = {
   key: 'primary',
-  storage: AsyncStorage
+  storage: AsyncStorage,
+  blacklist: [app, nav, location]
 };
 
 export default function getRootReducer() {
@@ -26,7 +25,6 @@ export default function getRootReducer() {
     app,
     nav,
     user,
-    location,
-    bookings
+    location
   });
 }

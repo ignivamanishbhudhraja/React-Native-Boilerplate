@@ -1,33 +1,30 @@
 /**
  * @file: BackButton.js
  * @description: Back Button Module for Navigation Bar.
- * @date: 18.09.2017
+ * @date: 05.Jan.2018
  * @author: Manish Budhiraja
  */
-/* @flow */
-"use strict";
-import React, { Component } from "react";
-import {
-  Image,
-  TouchableHighlight,
-  Text,
-  StyleSheet,
-  View,
-  TouchableWithoutFeedback,
-  Platform
-} from "react-native";
-import Constants from "../../constants";
 
-const BackButton = props => {
-  let {
-    label,
-    onPress,
-    title,
-    containerStyle,
-    buttonStyle,
-    textStyle,
-    imageStyle
-  } = props;
+/* @flow */
+
+'use strict';
+
+import React from 'react';
+import { Image, TouchableHighlight, Text, StyleSheet, View } from 'react-native';
+import Constants from '../../constants';
+import PropTypes from 'prop-types';
+
+type Props = {
+  title: string,
+  containerStyle: View.propTypes.style,
+  buttonStyle: View.propTypes.style,
+  textStyle: Text.propTypes.style,
+  imageStyle: Image.propTypes.style,
+  onPress: PropTypes.func.isRequired
+};
+
+const BackButton = (props: Props) => {
+  let { onPress, title, containerStyle, buttonStyle, textStyle, imageStyle } = props;
   return (
     <View style={[styles.container, containerStyle]}>
       <TouchableHighlight
@@ -49,10 +46,18 @@ const BackButton = props => {
   );
 };
 
+BackButton.defaultProps = {
+  title: '',
+  containerStyle: {},
+  buttonStyle: {},
+  textStyle: {},
+  imageStyle: {}
+};
+
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     backgroundColor: Constants.Colors.PrimaryColor
   },
   button: {
@@ -67,20 +72,16 @@ const styles = StyleSheet.create({
   backImage: {
     height: Constants.BaseStyle.DEVICE_WIDTH / 100 * 4.5,
     width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 7,
-    alignSelf: "center"
+    alignSelf: 'center'
   },
   textStyle: {
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: Constants.Colors.Transparent,
     color: Constants.Colors.White,
     ...Constants.Fonts.contentBold
   }
 });
-
-BackButton.defaultProps = {
-  title: ""
-};
 
 module.exports = BackButton;

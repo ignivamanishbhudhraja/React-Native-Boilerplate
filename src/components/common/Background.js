@@ -1,34 +1,34 @@
 /**
  * @file: background.js
  * @description: Use to show background of application pages.
- * @date: 03.Jan.2018
+ * @date: 05.Jan.2018
  * @author: Manish Budhiraja
  */
+
 /* @flow */
 
-"use strict";
+'use strict';
 
-import React, { Component } from "react";
-import { StyleSheet, Image } from "react-native";
-import Constants from "../../constants";
+import React from 'react';
+import { StyleSheet, Image } from 'react-native';
+import Constants from '../../constants';
 
-export default class Background extends Component {
-  constructor(props) {
-    super(props);
-  }
+type Props = {
+  children?: any,
+  style: Image.propTypes.style
+};
 
-  // Default Render Function
-  render() {
-    return (
-      <Image
-        source={Constants.Images.background}
-        style={[styles.container, this.props.style]}
-      >
-        {this.props.children}
-      </Image>
-    );
-  }
-}
+const Background = (props: Props) => {
+  return (
+    <Image source={Constants.Images.background} style={[styles.container, props.style]}>
+      {props.children}
+    </Image>
+  );
+};
+
+Background.defaultProps = {
+  style: {}
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -6,13 +6,19 @@
  */
 /* @flow */
 
-"use strict";
+'use strict';
 
-import React, { Component } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Constants from "../../constants";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import Constants from '../../constants';
 
-const NoRecord = props => {
+type Props = {
+  info: string,
+  container: View.propTypes.style,
+  textStyle: Text.propTypes.style
+};
+
+const NoRecord = (props: Props) => {
   const { container, textStyle, info } = props;
   return (
     <View style={[styles.container, container]}>
@@ -22,7 +28,7 @@ const NoRecord = props => {
 };
 
 NoRecord.defaultProps = {
-  info: "No Record Found.",
+  info: 'No Record Found.',
   container: {},
   textStyle: {}
 };
@@ -30,13 +36,13 @@ NoRecord.defaultProps = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    alignItems: "center",
-    justifyContent: "center",
-    alignSelf: "center"
+    backgroundColor: Constants.Colors.White,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center'
   },
   info: {
-    textAlign: "center",
+    textAlign: 'center',
     color: Constants.Colors.Black,
     marginTop: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 35,
     ...Constants.Fonts.content

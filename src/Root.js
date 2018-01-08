@@ -4,21 +4,15 @@
  * @date: 04.Jan.2018
  * @author: Manish Budhraja
  * */
+
 // @flow
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  InteractionManager,
-  Platform,
-  Alert,
-  Linking,
-  StatusBar
-} from "react-native";
-import Navigator from "./config/navigator";
-import { Toast } from "react-native-redux-toast";
-import Constants from "./constants";
-import { Progress } from "./components/common";
+'use strict';
+import React from 'react';
+import { StyleSheet, View, Platform, StatusBar } from 'react-native';
+import Navigator from './config/navigator';
+import { Toast } from 'react-native-redux-toast';
+import Constants from './constants';
+import { Progress } from './components/common';
 
 export default class Root extends React.Component<{}> {
   /**
@@ -38,9 +32,7 @@ export default class Root extends React.Component<{}> {
   render() {
     return (
       <View style={styles.container}>
-        {Platform.OS === "android" && (
-          <StatusBar backgroundColor={Constants.Colors.AccentColor} />
-        )}
+        {Platform.OS === 'android' && <StatusBar backgroundColor={Constants.Colors.AccentColor} />}
         <Progress />
         <Navigator />
         <Toast messageStyle={styles.toastStyle} />

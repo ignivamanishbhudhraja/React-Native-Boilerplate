@@ -1,21 +1,25 @@
 /**
  * @file: ShadowView.js
  * @description: Used as container for shadow.
- * @date: 03.Jan.2018
+ * @date: 05.Jan.2018
  * @author: Manish Budhiraja
  */
-/* @flow */
-"use strict";
-import React, { Component } from "react";
-import { StyleSheet, Image } from "react-native";
-import Constants from "../../constants";
 
-const ShadowView = props => {
-  return (
-    <View style={[styles.container, props.containerStyle]}>
-      {props.children}
-    </View>
-  );
+/* @flow */
+
+'use strict';
+
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
+import Constants from '../../constants';
+
+type Props = {
+  containerStyle: View.propTypes.style,
+  children: any
+};
+
+const ShadowView = (props: Props) => {
+  return <View style={[styles.container, props.containerStyle]}>{props.children}</View>;
 };
 
 ShadowView.defaultProps = {

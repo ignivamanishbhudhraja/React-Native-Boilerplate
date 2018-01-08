@@ -6,9 +6,7 @@
  * */
 
 'use-strict';
-import BaseStyle from './BaseStyle';
-import { Dimensions } from 'react-native';
-import { scale, verticalScale, moderateScale } from '../utilities/ResponsiveFonts';
+import { moderateScale } from '../utilities/ResponsiveFonts';
 
 let Fonts = {
   smallRegular: {
@@ -39,7 +37,7 @@ let Fonts = {
     fontSize: moderateScale(18),
     fontFamily: 'MerriweatherSans-Light'
   },
-  subtitle_bold: {
+  subtitleBold: {
     fontSize: moderateScale(18),
     fontFamily: 'MerriweatherSans-Regular'
   },
@@ -47,15 +45,15 @@ let Fonts = {
     fontSize: moderateScale(20),
     fontFamily: 'MerriweatherSans-Light'
   },
-  title_bold: {
+  titleBold: {
     fontSize: moderateScale(20),
     fontFamily: 'MerriweatherSans-Regular'
   },
-  tab_header: {
+  tabHeader: {
     fontSize: moderateScale(22),
     fontFamily: 'MerriweatherSans-Light'
   },
-  tab_header_bold: {
+  tabHeaderBold: {
     fontSize: moderateScale(22),
     fontFamily: 'MerriweatherSans-Regular'
   },
@@ -63,15 +61,15 @@ let Fonts = {
     fontSize: moderateScale(20),
     fontFamily: 'MerriweatherSans-Light'
   },
-  headers_bold: {
+  headersBold: {
     fontSize: moderateScale(20),
     fontFamily: 'MerriweatherSans-Regular'
   },
-  text_input: {
+  textInput: {
     fontSize: moderateScale(16),
     fontFamily: 'MerriweatherSans-Light'
   },
-  tiny_bold: {
+  tinyBold: {
     fontSize: moderateScale(12),
     fontFamily: 'MerriweatherSans-Regular'
   },
@@ -83,7 +81,7 @@ let Fonts = {
     fontSize: moderateScale(11),
     fontFamily: 'MerriweatherSans-Light'
   },
-  tinyMedium_bold: {
+  tinyMediumBold: {
     fontSize: moderateScale(11),
     fontFamily: 'MerriweatherSans-Regular'
   },
@@ -95,15 +93,11 @@ let Fonts = {
     fontSize: moderateScale(13),
     fontFamily: 'MerriweatherSans-Regular'
   },
-  content_bold: {
-    fontSize: moderateScale(16),
-    fontFamily: 'MerriweatherSans-Regular'
-  },
   largest: {
     fontSize: moderateScale(22),
     fontFamily: 'MerriweatherSans-Light'
   },
-  largest_bold: {
+  largestBold: {
     fontSize: moderateScale(22),
     fontFamily: 'MerriweatherSans-Regular'
   },
@@ -117,7 +111,7 @@ let Fonts = {
     fontFamily: 'MerriweatherSans-Regular',
     lineHeight: 20
   },
-  nav_header: {
+  navHeader: {
     fontSize: moderateScale(17),
     fontFamily: 'MerriweatherSans-Regular'
   },

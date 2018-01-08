@@ -1,6 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/node_modules/.*
 <PROJECT_ROOT>/libdefs.js
+<PROJECT_ROOT>/node_modules/fbjs/.*
 [include]
 src/
 [libs]

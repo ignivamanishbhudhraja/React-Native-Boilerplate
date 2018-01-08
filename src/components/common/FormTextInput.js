@@ -1,27 +1,56 @@
 /**
  * @file: FormTextInput.js
  * @description: Component for Text Inputs.
- * @date: 18.09.2017
+ * @date: 05.Jan.2018
  * @author: Manish Budhiraja
  */
+
 /* @flow */
 
-"use strict";
-import React, { PropTypes, Component } from "react";
-import {
-  View,
-  Image,
-  StyleSheet,
-  Dimensions,
-  TextInput,
-  Text,
-  Platform
-} from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import Constants from "../../constants";
+'use strict';
+import React from 'react';
+import { View, Image, StyleSheet, TextInput, Text, Platform } from 'react-native';
+import Constants from '../../constants';
+import PropTypes from 'prop-types';
 
-class FormTextInput extends Component {
-  constructor(props) {
+type Props = {
+  onFocus: PropTypes.func.isRequired,
+  onSubmitEditing: PropTypes.func.isRequired,
+  onChangeText: PropTypes.func.isRequired,
+  returnKeyType: string,
+  icon: string,
+  keyboardType: string,
+  placeholder: string,
+  style: View.propTypes.style,
+  textInputStyle: TextInput.propTypes.style,
+  placeholderTextColor: string,
+  autoFocus: boolean,
+  secureTextEntry: boolean,
+  maxLength: number,
+  value: string,
+  autoCapitalize: string,
+  iconStyle: Image.propTypes.style,
+  priceStyle: Text.propTypes.style,
+  onChange: PropTypes.func.isRequired,
+  autoCorrect: boolean
+};
+
+type State = {
+  isFocused: boolean
+};
+export default class FormTextInput extends React.Component<Props, State> {
+  textInput: ?any;
+
+  static defaultProps = {
+    autoFocus: false,
+    iconStyle: {},
+    secureTextEntry: false,
+    maxLength: 250,
+    value: '',
+    autoCorrect: false
+  };
+
+  constructor(props: Object) {
     super(props);
     this.state = {
       isFocused: false
@@ -44,14 +73,16 @@ class FormTextInput extends Component {
    */
 
   focus() {
-    this.refs.inputBox.focus();
+    if (this.textInput) {
+      this.textInput.focus();
+    }
   }
 
   /**
    * Text-input onChange method.
    */
 
-  onChange(event) {
+  onChange(event: any) {
     if (this.props.onChange) {
       this.props.onChange(event);
     }
@@ -77,23 +108,13 @@ class FormTextInput extends Component {
             style={[styles.iconStyle, this.props.iconStyle]}
           />
         )}
-        {this.props.price && (
-          <Text style={[styles.price, this.props.priceStyle]}>
-            {Constants.i18n.common.pound}
-          </Text>
-        )}
-        <View style={{ flex: 1 }}>
+        <View style={styles.textInputContainer}>
           <TextInput
-            ref="inputBox"
-            autoCorrect={
-              this.props.autoCorrect ? this.props.children.autoCorrect : false
-            }
-            autoCapitalize={
-              this.props.autoCapitalize ? this.props.autoCapitalize : "none"
-            }
+            ref={textInput => (this.textInput = textInput)}
+            autoCorrect={this.props.autoCorrect}
+            autoCapitalize={this.props.autoCapitalize}
             keyboardType={this.props.keyboardType}
             placeholder={this.props.placeholder}
-            //placeholder={this.props.secureTextEntry?"••••••••":this.props.placeholder}
             placeholderTextColor={
               this.props.placeholderTextColor
                 ? this.props.placeholderTextColor
@@ -122,8 +143,8 @@ class FormTextInput extends Component {
 const styles = StyleSheet.create({
   containerStyle: {
     borderBottomWidth: 1,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     ...Platform.select({
       android: {
         height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 7
@@ -132,6 +153,9 @@ const styles = StyleSheet.create({
         height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 5
       }
     })
+  },
+  textInputContainer: {
+    flex: 1
   },
   textInputStyle: {
     ...Constants.Fonts.regular,
@@ -148,30 +172,5 @@ const styles = StyleSheet.create({
     width: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.9,
     height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.9,
     marginRight: Constants.BaseStyle.DEVICE_WIDTH / 100 * 5
-  },
-  price: {
-    ...Constants.Fonts.regular,
-    color: Constants.Colors.Gray,
-    marginRight: 5
   }
 });
-
-FormTextInput.defaultProps = {
-  autoFocus: false
-};
-
-FormTextInput.PropTypes = {
-  returnKeyType: PropTypes.string,
-  icon: PropTypes.string.isRequired,
-  keyboardType: PropTypes.string,
-  placeholder: PropTypes.string,
-  onChangeText: PropTypes.func,
-  onFocus: PropTypes.func,
-  onSubmitEditing: PropTypes.func,
-  style: PropTypes.object,
-  textInputStyle: PropTypes.object,
-  placeholderTextColor: PropTypes.string,
-  iconStyle: PropTypes.object
-};
-
-export default FormTextInput;

@@ -5,11 +5,16 @@
  * @author: Manish Budhraja
  * */
 
-import React, { Component } from 'react';
+/* @flow */
+
+'use strict';
+
+import React from 'react';
 import { StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import routes from './routes';
 import { BackHandler, Alert } from 'react-native';
+import PropTypes from 'prop-types';
 
 /**
  * React Navigation's Configuration
@@ -27,21 +32,28 @@ const stackNavigatorConfiguration = {
  * */
 const AppNavigator = StackNavigator(routes, stackNavigatorConfiguration);
 
+type Props = {
+  dispatch: PropTypes.func,
+  nav: PropTypes.object
+};
+
+type State = {};
+
 /**
  * @function: Providing dispatch and nav state into app
  * */
-class AppWithNavigationState extends Component {
-  constructor(props) {
-    super(props);
-  }
+class AppWithNavigationState extends React.Component<Props, State> {
   componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+    BackHandler.addEventListener('hardwareBackPress', this.hardwareBackPress);
   }
   componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+    BackHandler.removeEventListener('hardwareBackPress', this.hardwareBackPress);
   }
 
-  onBackPress = () => {
+  /**
+   * @function: On hardware back press popup will appear for applciation exit permission.
+   * */
+  hardwareBackPress = () => {
     const { dispatch, nav } = this.props;
     if (nav.index === 0) {
       Alert.alert(
@@ -50,7 +62,6 @@ class AppWithNavigationState extends Component {
         [
           {
             text: 'Cancel',
-            onPress: () => console.log('Cancel Pressed'),
             style: 'cancel'
           },
           {

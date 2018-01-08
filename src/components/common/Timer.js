@@ -4,27 +4,51 @@
  * @date: 18.09.2017
  * @author: Manish Budhiraja
  */
+
+'use strict';
+
 /* @flow */
 
-"use strict";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import Constants from '../../constants';
+import TimerMixin from 'react-timer-mixin';
+// import ReactMixin from 'react-mixin';
+import moment from 'moment';
 
-import React, { PropTypes, Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import Constants from "../../constants";
-import TimerMixin from "react-timer-mixin";
-import ReactMixin from "react-mixin";
-import moment from "moment";
+type Props = {
+  startTime: number,
+  style: View.propTypes.style
+};
 
-class Timer extends Component {
-  constructor(props) {
+type State = {
+  startTime: number
+};
+
+export default class Timer extends React.Component<Props, State> {
+  timer: number;
+  mixin: [TimerMixin];
+  constructor(props: Object) {
     super(props);
     this.state = {
       startTime: props.startTime
     };
   }
 
-  componentDidMount() {
-    let self = this;
+  componentWillMount() {
+    //this.runTimer();
+  }
+
+  componentWillUnmount() {
+    //this.clearInterval(this.timer);
+  }
+
+  /*
+  * @function : Start time before component mount.
+  */
+
+  runTimer = () => {
+    /*let self = this;
     let runTime = new Date().getTime();
     this.timer = this.setInterval(() => {
       if (self.state.startTime - 1 < 1) {
@@ -33,26 +57,20 @@ class Timer extends Component {
         self.setState({ startTime: 0 });
         return;
       }
-      let duration = moment.duration(
-        moment(new Date().getTime(), "x").diff(moment(runTime, "x"))
-      );
+      let duration = moment.duration(moment(new Date().getTime(), 'x').diff(moment(runTime, 'x')));
       let mins = duration.asSeconds().toFixed(0);
       self.setState({ startTime: self.props.startTime - mins });
-    }, 1000);
-  }
-
-  componentWillUnmount() {
-    this.clearInterval(this.timer);
-  }
+    }, 1000);*/
+  };
 
   render() {
-    const { title, textLeft, textRight } = this.props;
+    const { style } = this.props;
     let time = this.state.startTime;
     let minutes = Math.floor(time / 60);
     return (
-      <View style={this.props.style}>
+      <View style={style}>
         <Text style={styles.timeremaining}>
-          {("0" + (time - minutes * 60)).slice(-2)} seconds remaining
+          {('0' + (time - minutes * 60)).slice(-2)} {'seconds remaining'}
         </Text>
       </View>
     );
@@ -60,44 +78,12 @@ class Timer extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    borderWidth: 1,
-    alignSelf: "center",
-    borderColor: Constants.Colors.AccentColor,
-    borderRadius: Constants.BaseStyle.DEVICE_WIDTH / 100 * 15,
-    width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 30,
-    height: Constants.BaseStyle.DEVICE_WIDTH / 100 * 30,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  time: {
-    textAlign: "center",
-    padding: 0,
-    backgroundColor: "transparent",
-    margin: 0,
-    color: Constants.Colors.Black,
-    ...Constants.Fonts.normal
-  },
-  subText: {
-    textAlign: "center",
-    padding: 0,
-    margin: 0,
-    backgroundColor: "transparent",
-    color: Constants.Colors.Black,
-    ...Constants.Fonts.smallSize
-  },
   timeremaining: {
     color: Constants.Colors.AccentColor,
     ...Constants.Fonts.tinyLargeBold,
     width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 30,
-    alignSelf: "center",
+    alignSelf: 'center',
     backgroundColor: Constants.Colors.Transparent,
     marginLeft: Constants.BaseStyle.DEVICE_WIDTH / 100 * 5
   }
 });
-Timer.PropTypes = {
-  startTime: PropTypes.string.isRequired
-};
-
-ReactMixin(Timer.prototype, TimerMixin);
-export default Timer;

@@ -5,60 +5,43 @@
  * @author: Manish Budhraja
  * */
 
+/* @flow */
+
 'use strict';
-import { handleLoader } from './app';
-import RestClient from '../../utilities/RestClient';
-import { ToastActionsCreators } from 'react-native-redux-toast';
-import Constants from '../../constants';
+import { Logger } from '../../utilities';
 
 // Import required actions Actions
 import { GPS_LOCATION, SELECTED_LOCATION, SET_ADDRESS } from '../Actions';
 
 // Action Creators
-export const gpsLocation = data => ({ type: GPS_LOCATION, data });
-export const selectedLocation = data => ({ type: SELECTED_LOCATION, data });
-export const setAddress = data => ({ type: SET_ADDRESS, data });
-
-/**
- * Fetch list of addresses based on given postal code.
- */
-
-export const fetchLocation = postalCode => {
-  return dispatch => {
-    dispatch(handleLoader());
-    RestClient.fetchAddressWithPostalCode(postalCode)
-      .then(response => {
-        if (response.code === 2000 && response.message == 'Success') {
-          dispatch(setAddress(response.result));
-        }
-        dispatch(handleLoader());
-      })
-      .catch(error => {
-        dispatch(handleLoader());
-      });
-  };
-};
+export const gpsLocation = (data: Object): Action => ({ type: GPS_LOCATION, data: data });
+export const selectedLocation = (data: Object): Action => ({ type: SELECTED_LOCATION, data: data });
+export const setAddress = (data: Object): Action => ({ type: SET_ADDRESS, data: data });
 
 // Reducer
-const initialState = {
-  gpsLocation: null,
-  selectedLocation: null,
-  addresses: []
+type Action = {
+  type: string,
+  data: Object
 };
 
-export default function reducer(state = initialState, action) {
+type State = {
+  gpsLocation: ?Object,
+  selectedLocation: ?Object
+};
+
+const initialState: State = {
+  gpsLocation: null,
+  selectedLocation: null
+};
+
+export default function reducer(state: any = initialState, action: Action): State {
+  Logger.log('location reducer==> ', action.data);
   switch (action.type) {
     case GPS_LOCATION:
-      return {
-        ...state,
-        gpsLocation: { ...state.gpsLocation, ...action.data }
-      };
+      return { ...state, gpsLocation: action.data };
 
     case SELECTED_LOCATION:
-      return {
-        ...state,
-        selectedLocation: { ...state.selectedLocation, ...action.data }
-      };
+      return { ...state, selectedLocation: action.data };
 
     case SET_ADDRESS:
       return { ...state, addresses: action.data };

@@ -2,26 +2,22 @@
 
 /* "javascript.validate.enable": false,
 "flow.useNPMPackagedFlow": true*/
-import React, { Component } from "react";
-import { AppRegistry, StyleSheet, Text, View } from "react-native";
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Avatar, Button } from '../components/common';
+//import { Logger } from '../utilities';
+import * as loaderActions from '../redux/modules/app';
 
 type Props = {
-  foo: number,
-  bar?: string
+  navigation: any
 };
 
-export default class NextFoodie extends React.Component<Props> {
+export default class NextFoodie extends React.Component<Props, void> {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>{"Welcome to React Native!"}</Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{"\n"}
-          Shake or press menu button for dev menu
-        </Text>
+        <Text style={styles.welcome}>{'Welcome to React Native!'}</Text>
+        <Avatar user={{ role: '1', photo: '' }} />
       </View>
     );
   }
@@ -30,18 +26,12 @@ export default class NextFoodie extends React.Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   welcome: {
     fontSize: 20,
-    textAlign: "center",
+    textAlign: 'center',
     margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
   }
 });

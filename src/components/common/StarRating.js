@@ -1,85 +1,104 @@
 /*
  * @file: StarRating.js
  * @description: Contains star rating component.
- * @date: 18.09.2017
+ * @date: 08.Jan.2017
  * @author: Manish Budhiraja
  * */
-/* @flow */
-"use strict";
-import {
-  StyleSheet,
-  View,
-  TouchableWithoutFeedback,
-  Image,
-  Dimensions,
-  Alert,
-  Linking,
-  Platform
-} from "react-native";
-import React, { Component } from "react";
-import Constants from "../../constants";
 
-export default class StarRating extends Component {
-  constructor(props) {
+/* @flow */
+
+'use strict';
+
+import React from 'react';
+import { View, TouchableWithoutFeedback, Image, StyleSheet } from 'react-native';
+import Constants from '../../constants';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
+
+type Props = {
+  rating: number,
+  max: number,
+  editable: boolean,
+  onRate: PropTypes.func,
+  starStyle: Image.propTypes.style,
+  style: TouchableWithoutFeedback.propTypes.style,
+  starChecked: PropTypes.object,
+  starUnchecked: PropTypes.object
+};
+
+type State = {
+  rating: number
+};
+
+export default class StarRating extends React.Component<Props, State> {
+  static defaultProps = {
+    rating: 0,
+    max: 5,
+    editable: true,
+    style: {},
+    starStyle: {},
+    starChecked: {}, // image
+    starUnchecked: {} // image
+  };
+
+  constructor(props: Object) {
     super(props);
     this.state = {
-      rating: this.props.rating ? this.props.rating : 0,
-      max: this.props.max ? this.props.max : 5,
-      iconWidth: this.props.iconWidth
-        ? this.props.iconWidth
-        : Platform.OS === "ios"
-          ? Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8
-          : Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8,
-      iconHeight: this.props.iconHeight
-        ? this.props.iconHeight
-        : Platform.OS === "ios"
-          ? Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8
-          : Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1.8,
-      iconSelected: this.props.iconSelected
-        ? this.props.iconSelected
-        : Constants.Images.ic_small_star,
-      iconUnselected: this.props.iconUnselected
-        ? this.props.iconUnselected
-        : Constants.Images.ic_small_grey_star,
-      editable: this.props.editable != null ? this.props.editable : false
+      rating: this.props.rating
     };
   }
 
-  _onRate(rating) {
+  /*
+  * @function : Trigger when user tap on rate icons . accepts numbers only.
+  */
+
+  onRate = (rating: number) => {
     this.setState({ rating });
-    if (this.props.onRate) {
+    if (_.isFunction(this.props.onRate)) {
       this.props.onRate(rating);
     }
-  }
-  render() {
-    var icons = [];
-    for (let i = 1; i <= this.state.max; i++) {
-      icons.push(
+  };
+
+  /*
+  * @function : Render the stars.
+  */
+
+  renderIcons = () => {
+    let { max, editable, starChecked, starUnchecked } = this.props;
+    let starStyle = [styles.starStyle, this.props.starStyle];
+    let icons = _.map(max, (rateIcon, i) => {
+      return (
         <TouchableWithoutFeedback
-          disabled={!this.state.editable}
+          disabled={!editable}
           key={i}
-          style={{ height: this.state.iconHeight, width: this.state.iconWidth }}
-          onPress={() => this._onRate(i)}
+          style={styles.starContainerStyle}
+          onPress={() => this.onRate(i)}
         >
-          <Image
-            style={{
-              height: this.state.iconHeight,
-              width: this.state.iconWidth,
-              ...this.props.iconStyle,
-              marginHorizontal: Constants.BaseStyle.DEVICE_WIDTH / 100 * 0.5,
-              marginVertical: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 0.5
-            }}
-            source={
-              this.state.rating >= i
-                ? this.state.iconSelected
-                : this.state.iconUnselected
-            }
-          />
+          <Image style={starStyle} source={this.state.rating >= i ? starChecked : starUnchecked} />
         </TouchableWithoutFeedback>
       );
-    }
-    return (
-      <View style={[this.props.style, { flexDirection: "row" }]}>{icons}</View>
-    );
+    });
+    return icons;
+  };
+
+  render() {
+    const containerStyle = [styles.container, this.props.style];
+    return <View style={containerStyle}>{this.renderIcons}</View>;
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row'
+  },
+  starStyle: {
+    marginHorizontal: Constants.BaseStyle.DEVICE_WIDTH / 100 * 0.5,
+    marginVertical: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 0.5,
+    height: Constants.BaseStyle.DEVICE_WIDTH / 100 * 2,
+    width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 2
+  },
+  starContainerStyle: {
+    height: Constants.BaseStyle.DEVICE_WIDTH / 100 * 2,
+    width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 2
+  }
+});

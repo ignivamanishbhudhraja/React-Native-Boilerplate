@@ -5,22 +5,14 @@
  * @author: Manish Budhiraja
  */
 
-import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React from 'react';
+import { Text, TouchableOpacity, View } from 'react-native';
 /* @flow */
-import PropTypes from "prop-types";
-import styles from "./styles";
+import PropTypes from 'prop-types';
+import styles from './styles';
 
 export default function NavbarButton(props) {
-  const {
-    style,
-    tintColor,
-    title,
-    handler,
-    disabled,
-    accessible,
-    accessibilityLabel
-  } = props;
+  const { style, tintColor, title, handler, disabled, accessible, accessibilityLabel } = props;
 
   return (
     <TouchableOpacity
@@ -31,9 +23,7 @@ export default function NavbarButton(props) {
       accessibilityLabel={accessibilityLabel}
     >
       <View style={style}>
-        <Text style={[styles.navBarButtonText, { color: tintColor }]}>
-          {title}
-        </Text>
+        <Text style={[styles.navBarButtonText, { color: tintColor }]}>{title}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -51,8 +41,8 @@ NavbarButton.propTypes = {
 
 NavbarButton.defaultProps = {
   style: {},
-  title: "",
-  tintColor: "#0076FF",
+  title: '',
+  tintColor: '#0076FF',
   disabled: false,
   handler: () => ({})
 };

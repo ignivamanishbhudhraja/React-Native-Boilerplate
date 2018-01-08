@@ -1,32 +1,34 @@
 /*
  * @file: ComingSoon.js
  * @description: Default Under Construction page for the application.
- * @date: 18.09.2017
+ * @date: 05.Jan.2018
  * @author: Manish Budhiraja
  * */
+
 /* @flow */
-"use strict";
 
-import React, { Component, PropTypes } from "react";
-import {
-  Text,
-  Image,
-  View,
-  TouchableHighlight,
-  StyleSheet,
-  Alert,
-  Linking,
-  TouchableOpacity
-} from "react-native";
-import Constants from "../../constants";
+'use strict';
 
-const ComingSoon = props => {
+import React from 'react';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import Constants from '../../constants';
+import PropTypes from 'prop-types';
+
+type Props = {
+  message: string,
+  backgroundColor: string,
+  onPress: PropTypes.func.isRequired,
+  numberOfLines: number
+};
+
+const ComingSoon = (props: Props) => {
+  let { onPress, message, numberOfLines } = props;
   return (
-    <View style={{ flex: 1, backgroundColor: props.backgroundColor }}>
-      <View style={styles.container}>
-        <TouchableOpacity onPress={props.onPress}>
-          <Text style={styles.message} numberOfLines={3}>
-            {props.info}
+    <View style={styles.container}>
+      <View style={styles.wrapper}>
+        <TouchableOpacity onPress={onPress}>
+          <Text style={styles.message} numberOfLines={numberOfLines}>
+            {message}
           </Text>
         </TouchableOpacity>
       </View>
@@ -34,32 +36,27 @@ const ComingSoon = props => {
   );
 };
 
-ComingSoon.propTypes = {
-  info: PropTypes.string,
-  backgroundColor: PropTypes.string
-};
-
 ComingSoon.defaultProps = {
-  info: "Coming Soon",
-  backgroundColor: "#fff"
+  message: 'Coming Soon',
+  backgroundColor: '#fff',
+  numberOfLines: 3
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "transparent"
+    backgroundColor: Constants.Colors.White
+  },
+  wrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Constants.Colors.Transparent
   },
   message: {
-    textAlign: "center",
+    textAlign: 'center',
     ...Constants.Fonts.title,
     color: Constants.Colors.Black
-  },
-  logo: {
-    // height:(Constants.BaseStyle.DEVICE_HEIGHT/100)*8.5,
-    //width:(Constants.BaseStyle.DEVICE_WIDTH/100)*15,
-    alignSelf: "center"
   }
 });
 

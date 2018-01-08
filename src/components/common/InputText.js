@@ -1,26 +1,70 @@
 /**
  * @file: InputText.js
  * @description: Comonent for Text Inputs.
- * @date: 18.09.2017
- * @author: Vishal Kumar
+ * @date: 05.Jan.2018
+ * @author: Manish Budhiraja
  */
 
-"use strict";
+'use strict';
 /* @flow */
-import React, { Component } from "react";
-import {
-  View,
-  StyleSheet,
-  TextInput,
-  Text,
-  Image,
-  TouchableOpacity,
-  Platform
-} from "react-native";
-import Constants from "../../constants";
+import React from 'react';
+import { View, StyleSheet, TextInput, Text, Image, TouchableOpacity, Platform } from 'react-native';
+import Constants from '../../constants';
 
-export default class InputText extends Component {
-  constructor(props) {
+type Props = {
+  onFocus: PropTypes.func.isRequired,
+  onSubmitEditing: PropTypes.func.isRequired,
+  onChangeText: PropTypes.func.isRequired,
+  returnKeyType: string,
+  icon: string,
+  keyboardType: string,
+  placeholder: string,
+  style: View.propTypes.style,
+  textInputStyle: TextInput.propTypes.style,
+  placeholderTextColor: string,
+  autoFocus: boolean,
+  secureTextEntry: boolean,
+  maxLength: number,
+  value: string,
+  autoCapitalize: string,
+  iconStyle: Image.propTypes.style,
+  priceStyle: Text.propTypes.style,
+  onChange: PropTypes.func.isRequired,
+  autoCorrect: boolean,
+  imageStyle: Image.propTypes.style,
+  editable: boolean,
+  containerStyle: View.propTypes.style,
+  labelStyle: Text.propTypes.style,
+  labelText: string,
+  onImagePress: PropTypes.func.isRequired,
+  image0Style: Image.propTypes.style,
+  image: PropTypes.object,
+  image0: PropTypes.object
+};
+
+type State = {
+  isFocused: boolean
+};
+
+export default class InputText extends React.Component<Props, State> {
+  textInput: ?any;
+
+  static defaultProps = {
+    autoFocus: false,
+    iconStyle: {},
+    secureTextEntry: false,
+    maxLength: 250,
+    value: '',
+    autoCorrect: false,
+    imageStyle: {},
+    autoCapitalize: 'none',
+    editable: true,
+    labelText: '',
+    image0: null,
+    image: null
+  };
+
+  constructor(props: Object) {
     super(props);
     this.state = {
       isFocused: false
@@ -43,14 +87,16 @@ export default class InputText extends Component {
    */
 
   focus() {
-    this.refs.inputBox.focus();
+    if (this.textInput) {
+      this.textInput.focus();
+    }
   }
 
   /**
    * Text-input onChange method.
    */
 
-  onChange(event) {
+  onChange(event: any) {
     if (this.props.onChange) {
       this.props.onChange(event);
     }
@@ -69,21 +115,11 @@ export default class InputText extends Component {
           }
         ]}
       >
-        <Text style={[styles.labelStyle, this.props.labelStyle]}>
-          {this.props.labelText}
-        </Text>
+        <Text style={[styles.labelStyle, this.props.labelStyle]}>{this.props.labelText}</Text>
 
-        <View
-          style={{
-            flexDirection: "row",
-            alignItems: "center"
-          }}
-        >
+        <View style={styles.textInputContainer}>
           {this.props.image0 && (
-            <TouchableOpacity
-              hitSlop={Constants.HIT_SLOP}
-              onPress={this.props.onImagePress}
-            >
+            <TouchableOpacity hitSlop={Constants.HIT_SLOP} onPress={this.props.onImagePress}>
               <Image
                 resizeMode="contain"
                 source={this.props.image0}
@@ -92,14 +128,10 @@ export default class InputText extends Component {
             </TouchableOpacity>
           )}
           <TextInput
-            ref="inputBox"
+            ref={textInput => (this.textInput = textInput)}
             autoFocus={this.props.autoFocus}
-            autoCorrect={
-              this.props.autoCorrect ? this.props.children.autoCorrect : false
-            }
-            autoCapitalize={
-              this.props.autoCapitalize ? this.props.autoCapitalize : "none"
-            }
+            autoCorrect={this.props.autoCorrect}
+            autoCapitalize={this.props.autoCapitalize}
             keyboardType={this.props.keyboardType}
             placeholder={this.props.placeholder}
             placeholderTextColor={this.props.placeholderTextColor}
@@ -137,6 +169,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingVertical: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 2
   },
+  textInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
   labelStyle: {
     ...Constants.Fonts.tiny,
     color: Constants.Colors.Gray
@@ -167,16 +203,3 @@ const styles = StyleSheet.create({
     marginRight: Constants.BaseStyle.DEVICE_WIDTH / 100 * 5
   }
 });
-
-InputText.PropTypes = {
-  returnKeyType: PropTypes.string,
-  keyboardType: PropTypes.string,
-  placeholder: PropTypes.string,
-  onChangeText: PropTypes.func,
-  onFocus: PropTypes.func,
-  onSubmitEditing: PropTypes.func,
-  style: PropTypes.object,
-  bool: PropTypes.bool,
-  image: PropTypes.string,
-  imageStyle: PropTypes.object
-};

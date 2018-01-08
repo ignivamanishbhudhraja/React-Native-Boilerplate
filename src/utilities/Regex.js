@@ -4,7 +4,10 @@
  * @date: 04.Jan.2018
  * @author: Manish Budhraja
  * */
+
+/* eslint-disable */
 'use strict';
+
 let Regex = {
   validateEmail: function(val) {
     return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -40,7 +43,6 @@ let Regex = {
 
   validatePassword: function(val) {
     return /^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]\S{5,16}$/.test(val);
-    //return /^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9!@#$%^&*_]\S{5,16}$/.test(val);
   },
 
   validateNumbers: function(val) {
@@ -75,7 +77,6 @@ let Regex = {
 
   removeTrailingZeros(amount) {
     amount = amount.toString();
-    let regEx1 = /^[0]+/; // remove zeros from start.
     let regEx2 = /[0]+$/; // to check zeros after decimal point
     let regEx3 = /[.]$/; // remove decimal point.
     if (amount.indexOf('.') > -1) {

@@ -5,26 +5,36 @@
  * @author: Manish Budhraja
  * */
 
+/* @flow */
+
 'use strict';
+
 // Import required actions Actions
-import { STOP_LOADER, LOADER_VISIBLITY } from '../Actions';
+import * as Actions from '../Actions';
 
 // Action Creators
-export const handleLoader = () => ({ type: LOADER_VISIBLITY });
-export const stopLoader = () => ({ type: STOP_LOADER });
+export const handleLoader = (type: string): Action => ({ type });
 
 // Reducer
-const initialState = {
+type Action = {
+  type: string
+};
+
+type State = {
+  isLoading: boolean
+};
+
+const initialState: State = {
   isLoading: false
 };
 
-export default function reducer(state = initialState, action) {
+export default function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
-    case STOP_LOADER:
-      return { ...state, isLoading: false };
+    case Actions.SHOW_LOADER:
+      return { ...state, isLoading: true };
 
-    case LOADER_VISIBLITY:
-      return { ...state, isLoading: !state.isLoading };
+    case Actions.HIDE_LOADER:
+      return { ...state, isLoading: false };
 
     default:
       return state;

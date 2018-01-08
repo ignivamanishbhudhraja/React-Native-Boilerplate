@@ -7,7 +7,7 @@
 
 import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
-import { ApolloLink, concat, from } from 'apollo-link';
+import { ApolloLink, from } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { RetryLink } from 'apollo-link-retry';
 import { WebSocketLink } from 'apollo-link-ws';
@@ -90,7 +90,7 @@ export default function configureLinks(store) {
     */
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     console.log(`[Network error]: ${networkError}`, networkError);
-    console.log(`[GraphQL error]:`, graphQLErrors);
+    console.log('[GraphQL error]:', graphQLErrors);
     if (networkError) {
       dispatch(loaderActions.stopLoader());
       if (networkError.statusCode === 503) {
@@ -106,17 +106,6 @@ export default function configureLinks(store) {
   });
 
   /*
-     * @ Data Manipulation in afterware.
-     */
-  const addDatesLink = new ApolloLink((operation, forward) => {
-    return forward(operation).map(response => {
-      if (response.data.user.lastLoginDate) {
-        response.data.user.lastLoginDate = new Date(response.data.user.lastLoginDate);
-      }
-      return response;
-    });
-  });
-  /*
     * @ Retry Link Options.
     */
   const max = operation => operation.getContext().max; // Max Number Of Retry Calls.
@@ -127,9 +116,9 @@ export default function configureLinks(store) {
   };
 
   /*
-    * @ Creating Retry Link . Allow multiple attempts when an operation has failed. 
+    * @ Creating Retry Link . Allow multiple attempts when an operation has failed.
     * Retry Link retries on network errors only, not on GraphQL errors.
-    * E.g. Try a request while a network connection is offline and retry until it comes back online. 
+    * E.g. Try a request while a network connection is offline and retry until it comes back online.
     */
   const retryLink = new RetryLink({
     max,

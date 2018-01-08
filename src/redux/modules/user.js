@@ -4,33 +4,55 @@
  * @date: 04.Jan.2018
  * @author: Manish Budhraja
  * */
+
+/* @flow */
+
 'use strict';
-import { Platform } from 'react-native';
+
 import _ from 'lodash';
-import { handleLoader } from './app';
-import { goBack, reset } from './nav';
 import RestClient from '../../utilities/RestClient';
 import { ToastActionsCreators } from 'react-native-redux-toast';
-import Constants from '../../constants';
 
 // Import required actions Actions
 import * as Actions from '../Actions';
 
 // Action Creators
-export const setDeviceToken = data => ({ type: Actions.DEVICE_TOKEN, data });
-export const setUserData = data => ({ type: Actions.USER_PROFILE, data });
-export const updateProfile = data => ({ type: Actions.UPDATE_PROFILE, data });
+export const setDeviceToken = (data: string) => ({ type: Actions.DEVICE_TOKEN, data });
+export const completeWalkthrough = () => ({ type: Actions.COMPLETE_WALKTHROUGH });
+export const loginSuccess = (data: ?Object) => ({ type: Actions.LOGIN, data });
 export const logout = () => ({ type: Actions.LOGOUT });
-export const newInstall = () => ({ type: Actions.NEW_INSTALL });
-export const pendingProfile = data => ({
-  type: Actions.PENDING_PROFILE_UPDATE,
-  data
-});
+export const updateProfile = (data: ?Object) => ({ type: Actions.UPDATE_PROFILE, data });
+
+/**
+ * Types checks for reducer.
+ */
+
+// Reducer
+type Action = {
+  type: string,
+  data: ?Object
+};
+type State = {
+  userDetails: ?Object,
+  newInstall: boolean,
+  deviceToken: string
+};
+type PromiseAction = Promise<Action>;
+type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
+type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
+type GetState = () => State;
+
+const initialState: State = {
+  userDetails: null,
+  newInstall: true,
+  deviceToken: 'test'
+};
 
 /**
  * API to Upload Files(Images/PDFs) .
  */
-export const uploadFiles = (data, callBack) => {
+
+export const uploadFiles = (data: any, callBack: Function): ThunkAction => {
   let requestObject = new FormData();
   _.each(data, function(file, i) {
     if (file.isPDF) {
@@ -50,7 +72,6 @@ export const uploadFiles = (data, callBack) => {
     }
   });
   return dispatch => {
-    dispatch(handleLoader());
     RestClient.imageUpload('upload', requestObject)
       .then(result => {
         if (result.success) {
@@ -60,53 +81,15 @@ export const uploadFiles = (data, callBack) => {
         } else {
           dispatch(ToastActionsCreators.displayInfo(result.message));
         }
-        dispatch(handleLoader());
       })
-      .catch(error => {
-        dispatch(handleLoader());
-      });
+      .catch(error => {});
   };
-};
-
-/**
- * Fetch Vehicle Details from third party api services.
- */
-export const getVehicleDetails = (data, callBack) => {
-  return dispatch => {
-    dispatch(handleLoader());
-    let requestObject = {
-      apikey: Constants.VehicleAPIKey,
-      licencePlate: data
-    };
-    RestClient.getVehicle(requestObject)
-      .then(result => {
-        if (result.error !== 1 && result.message != 'No vehicle found') {
-          callBack(result);
-        }
-        dispatch(ToastActionsCreators.displayInfo(result.message));
-        dispatch(handleLoader());
-      })
-      .catch(error => {
-        dispatch(handleLoader());
-      });
-  };
-};
-
-/**
- * Initial state
- */
-const initialState = {
-  userDetails: null,
-  deviceToken: 'test',
-  reviews: [],
-  newInstall: true,
-  isUpdatePending: false
 };
 
 /**
  * Reducer
  */
-export default function reducer(state = initialState, action) {
+export default function reducer(state: any = initialState, action: Action): State {
   // console.log("action.data ===> ", action.data);
   switch (action.type) {
     case Actions.DEVICE_TOKEN:
@@ -128,15 +111,13 @@ export default function reducer(state = initialState, action) {
       return { ...state, isUpdatePending: action.data };
 
     case Actions.LOGOUT:
-      let data = {
+      return {
         ...initialState,
         ...{
           newInstall: state.newInstall,
           deviceToken: state.deviceToken
         }
       };
-      console.log('MY DAT ', data);
-      return data;
 
     default:
       return state;

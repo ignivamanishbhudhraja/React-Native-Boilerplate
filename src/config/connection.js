@@ -5,6 +5,7 @@
  * @date: 04.Jan.2018
  * @author: Manish Budhraja
  * */
+/* eslint-disable */
 
 const localhost = 'localhost:3000',
   sheenam = '192.168.0.168:3000',
