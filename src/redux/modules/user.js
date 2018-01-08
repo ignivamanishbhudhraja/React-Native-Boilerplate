@@ -92,34 +92,34 @@ export const uploadFiles = (data: any, callBack: Function): ThunkAction => {
 export default function reducer(state: any = initialState, action: Action): State {
   // console.log("action.data ===> ", action.data);
   switch (action.type) {
-    case Actions.DEVICE_TOKEN:
-      return { ...state, deviceToken: action.data };
+  case Actions.DEVICE_TOKEN:
+    return { ...state, deviceToken: action.data };
 
-    case Actions.USER_PROFILE:
-      return { ...state, userDetails: action.data };
+  case Actions.USER_PROFILE:
+    return { ...state, userDetails: action.data };
 
-    case Actions.UPDATE_PROFILE:
-      return {
-        ...state,
-        userDetails: { ...state.userDetails, ...action.data }
-      };
+  case Actions.UPDATE_PROFILE:
+    return {
+      ...state,
+      userDetails: { ...state.userDetails, ...action.data }
+    };
 
-    case Actions.NEW_INSTALL:
-      return { ...state, newInstall: false };
+  case Actions.NEW_INSTALL:
+    return { ...state, newInstall: false };
 
-    case Actions.PENDING_PROFILE_UPDATE:
-      return { ...state, isUpdatePending: action.data };
+  case Actions.PENDING_PROFILE_UPDATE:
+    return { ...state, isUpdatePending: action.data };
 
-    case Actions.LOGOUT:
-      return {
-        ...initialState,
-        ...{
-          newInstall: state.newInstall,
-          deviceToken: state.deviceToken
-        }
-      };
+  case Actions.LOGOUT:
+    return {
+      ...initialState,
+      ...{
+        newInstall: state.newInstall,
+        deviceToken: state.deviceToken
+      }
+    };
 
-    default:
-      return state;
+  default:
+    return state;
   }
 }

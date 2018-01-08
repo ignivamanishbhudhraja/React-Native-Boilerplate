@@ -31,11 +31,11 @@ export default class Root extends React.Component<{}> {
    * */
   render() {
     return (
-      <View style={styles.container}>
-        {Platform.OS === 'android' && <StatusBar backgroundColor={Constants.Colors.AccentColor} />}
+      <View style = {styles.container}>
+        {Platform.OS === 'android' && <StatusBar backgroundColor = {Constants.Colors.AccentColor} />}
         <Progress />
         <Navigator />
-        <Toast messageStyle={styles.toastStyle} />
+        <Toast messageStyle = {styles.toastStyle} />
       </View>
     );
   }

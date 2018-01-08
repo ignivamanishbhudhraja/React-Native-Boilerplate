@@ -24,8 +24,8 @@ type Props = {
 const SmallLink = (props: Props) => {
   const { text, onPress, textStyle, linkStyle } = props;
   return (
-    <TouchableOpacity style={[styles.linkStyle, linkStyle]} onPress={onPress}>
-      <Text style={[styles.textStyle, textStyle]}>{text}</Text>
+    <TouchableOpacity style = {[styles.linkStyle, linkStyle]} onPress = {onPress}>
+      <Text style = {[styles.textStyle, textStyle]}>{text}</Text>
     </TouchableOpacity>
   );
 };

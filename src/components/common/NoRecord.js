@@ -21,8 +21,8 @@ type Props = {
 const NoRecord = (props: Props) => {
   const { container, textStyle, info } = props;
   return (
-    <View style={[styles.container, container]}>
-      <Text style={[styles.info, textStyle]}>{info}</Text>
+    <View style = {[styles.container, container]}>
+      <Text style = {[styles.info, textStyle]}>{info}</Text>
     </View>
   );
 };

@@ -37,16 +37,16 @@ const initialState: State = {
 export default function reducer(state: any = initialState, action: Action): State {
   Logger.log('location reducer==> ', action.data);
   switch (action.type) {
-    case GPS_LOCATION:
-      return { ...state, gpsLocation: action.data };
+  case GPS_LOCATION:
+    return { ...state, gpsLocation: action.data };
 
-    case SELECTED_LOCATION:
-      return { ...state, selectedLocation: action.data };
+  case SELECTED_LOCATION:
+    return { ...state, selectedLocation: action.data };
 
-    case SET_ADDRESS:
-      return { ...state, addresses: action.data };
+  case SET_ADDRESS:
+    return { ...state, addresses: action.data };
 
-    default:
-      return state;
+  default:
+    return state;
   }
 }

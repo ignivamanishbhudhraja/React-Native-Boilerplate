@@ -14,7 +14,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import Constants from '../../constants';
 import TimerMixin from 'react-timer-mixin';
 // import ReactMixin from 'react-mixin';
-import moment from 'moment';
+//import moment from 'moment';
 
 type Props = {
   startTime: number,
@@ -68,8 +68,8 @@ export default class Timer extends React.Component<Props, State> {
     let time = this.state.startTime;
     let minutes = Math.floor(time / 60);
     return (
-      <View style={style}>
-        <Text style={styles.timeremaining}>
+      <View style = {style}>
+        <Text style = {styles.timeremaining}>
           {('0' + (time - minutes * 60)).slice(-2)} {'seconds remaining'}
         </Text>
       </View>

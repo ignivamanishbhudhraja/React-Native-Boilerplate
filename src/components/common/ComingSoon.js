@@ -24,10 +24,10 @@ type Props = {
 const ComingSoon = (props: Props) => {
   let { onPress, message, numberOfLines } = props;
   return (
-    <View style={styles.container}>
-      <View style={styles.wrapper}>
-        <TouchableOpacity onPress={onPress}>
-          <Text style={styles.message} numberOfLines={numberOfLines}>
+    <View style = {styles.container}>
+      <View style = {styles.wrapper}>
+        <TouchableOpacity onPress = {onPress}>
+          <Text style = {styles.message} numberOfLines = {numberOfLines}>
             {message}
           </Text>
         </TouchableOpacity>

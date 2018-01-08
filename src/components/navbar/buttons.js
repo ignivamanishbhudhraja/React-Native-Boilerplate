@@ -16,14 +16,14 @@ export default function NavbarButton(props) {
 
   return (
     <TouchableOpacity
-      style={styles.navBarButton}
-      onPress={handler}
-      disabled={disabled}
-      accessible={accessible}
-      accessibilityLabel={accessibilityLabel}
+      style = {styles.navBarButton}
+      onPress = {handler}
+      disabled = {disabled}
+      accessible = {accessible}
+      accessibilityLabel = {accessibilityLabel}
     >
-      <View style={style}>
-        <Text style={[styles.navBarButtonText, { color: tintColor }]}>{title}</Text>
+      <View style = {style}>
+        <Text style = {[styles.navBarButtonText, { color: tintColor }]}>{title}</Text>
       </View>
     </TouchableOpacity>
   );

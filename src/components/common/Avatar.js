@@ -28,27 +28,27 @@ const Avatar = (props: Props) => {
   let { user, localPath, avatarStyle, container } = props;
   let defaultImage = '';
   if (localPath !== '') {
-    return <Image source={{ uri: localPath }} style={[defaultStyles.avatarStyle, avatarStyle]} />;
+    return <Image source = {{ uri: localPath }} style = {[defaultStyles.avatarStyle, avatarStyle]} />;
   }
 
   if (!user || user.photo == '') {
     switch (user.role) {
-      case 'user':
-        defaultImage = Constants.Images.user;
-        break;
-      case 'business':
-        defaultImage = Constants.Images.user;
-        break;
-      case 'driver':
-        defaultImage = Constants.Images.driver;
-        break;
-      default:
-        defaultImage = Constants.Images.user;
-        break;
+    case 'user':
+      defaultImage = Constants.Images.user;
+      break;
+    case 'business':
+      defaultImage = Constants.Images.user;
+      break;
+    case 'driver':
+      defaultImage = Constants.Images.driver;
+      break;
+    default:
+      defaultImage = Constants.Images.user;
+      break;
     }
     return (
-      <View style={[defaultStyles.container, container]}>
-        <Image source={defaultImage} style={[defaultStyles.avatarStyle, avatarStyle]} />
+      <View style = {[defaultStyles.container, container]}>
+        <Image source = {defaultImage} style = {[defaultStyles.avatarStyle, avatarStyle]} />
       </View>
     );
   }
@@ -58,8 +58,8 @@ const Avatar = (props: Props) => {
     return (
       <View>
         <Image
-          source={{ uri: Connection.getMedia(user.photo) }}
-          style={[defaultStyles.avatarStyle, avatarStyle]}
+          source = {{ uri: Connection.getMedia(user.photo) }}
+          style = {[defaultStyles.avatarStyle, avatarStyle]}
         />
       </View>
     );

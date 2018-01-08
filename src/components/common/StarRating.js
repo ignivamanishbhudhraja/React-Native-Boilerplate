@@ -69,12 +69,12 @@ export default class StarRating extends React.Component<Props, State> {
     let icons = _.map(max, (rateIcon, i) => {
       return (
         <TouchableWithoutFeedback
-          disabled={!editable}
-          key={i}
-          style={styles.starContainerStyle}
-          onPress={() => this.onRate(i)}
+          disabled = {!editable}
+          key = {i}
+          style = {styles.starContainerStyle}
+          onPress = {() => this.onRate(i)}
         >
-          <Image style={starStyle} source={this.state.rating >= i ? starChecked : starUnchecked} />
+          <Image style = {starStyle} source = {this.state.rating >= i ? starChecked : starUnchecked} />
         </TouchableWithoutFeedback>
       );
     });
@@ -83,7 +83,7 @@ export default class StarRating extends React.Component<Props, State> {
 
   render() {
     const containerStyle = [styles.container, this.props.style];
-    return <View style={containerStyle}>{this.renderIcons}</View>;
+    return <View style = {containerStyle}>{this.renderIcons}</View>;
   }
 }
 

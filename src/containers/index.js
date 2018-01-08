@@ -4,9 +4,8 @@
 "flow.useNPMPackagedFlow": true*/
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Avatar, Button } from '../components/common';
+import { Avatar } from '../components/common';
 //import { Logger } from '../utilities';
-import * as loaderActions from '../redux/modules/app';
 
 type Props = {
   navigation: any
@@ -15,9 +14,9 @@ type Props = {
 export default class NextFoodie extends React.Component<Props, void> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>{'Welcome to React Native!'}</Text>
-        <Avatar user={{ role: '1', photo: '' }} />
+      <View style = {styles.container}>
+        <Text style = {styles.welcome}>{'Welcome to React Native!'}</Text>
+        <Avatar user = {{ role: '1', photo: '' }} />
       </View>
     );
   }

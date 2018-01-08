@@ -34,7 +34,7 @@ class Loader extends React.Component {
   }
 
   render() {
-    return <Spinner visible={this.state.visible} />;
+    return <Spinner visible = {this.state.visible} />;
   }
 }
 

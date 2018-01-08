@@ -20,7 +20,7 @@ type Props = {
 
 const Background = (props: Props) => {
   return (
-    <Image source={Constants.Images.background} style={[styles.container, props.style]}>
+    <Image source = {Constants.Images.background} style = {[styles.container, props.style]}>
       {props.children}
     </Image>
   );

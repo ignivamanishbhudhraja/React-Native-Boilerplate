@@ -34,24 +34,24 @@ const Button = (props: Props) => {
   if (Platform.OS == 'ios') {
     return (
       <TouchableOpacity
-        activeOpacity={0.9}
-        style={[styles.buttonStyle, buttonStyle]}
-        disabled={disabled}
-        onPress={onPress}
+        activeOpacity = {0.9}
+        style = {[styles.buttonStyle, buttonStyle]}
+        disabled = {disabled}
+        onPress = {onPress}
       >
-        <Text style={[styles.text, textStyle]}>{buttonName}</Text>
+        <Text style = {[styles.text, textStyle]}>{buttonName}</Text>
       </TouchableOpacity>
     );
   }
 
   return (
     <TouchableNativeFeedback
-      activeOpacity={0.9}
-      style={[styles.buttonStyle, buttonStyle]}
-      disabled={disabled}
-      onPress={onPress}
+      activeOpacity = {0.9}
+      style = {[styles.buttonStyle, buttonStyle]}
+      disabled = {disabled}
+      onPress = {onPress}
     >
-      <Text style={[styles.text, textStyle]}>{buttonName}</Text>
+      <Text style = {[styles.text, textStyle]}>{buttonName}</Text>
     </TouchableNativeFeedback>
   );
 };

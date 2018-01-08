@@ -91,7 +91,7 @@ export default class FormTextInput extends React.Component<Props, State> {
   render() {
     return (
       <View
-        style={[
+        style = {[
           styles.containerStyle,
           this.props.style,
           {
@@ -103,36 +103,36 @@ export default class FormTextInput extends React.Component<Props, State> {
       >
         {this.props.icon && (
           <Image
-            resizeMode="contain"
-            source={this.props.icon}
-            style={[styles.iconStyle, this.props.iconStyle]}
+            resizeMode = "contain"
+            source = {this.props.icon}
+            style = {[styles.iconStyle, this.props.iconStyle]}
           />
         )}
-        <View style={styles.textInputContainer}>
+        <View style = {styles.textInputContainer}>
           <TextInput
-            ref={textInput => (this.textInput = textInput)}
-            autoCorrect={this.props.autoCorrect}
-            autoCapitalize={this.props.autoCapitalize}
-            keyboardType={this.props.keyboardType}
-            placeholder={this.props.placeholder}
-            placeholderTextColor={
+            ref = {textInput => (this.textInput = textInput)}
+            autoCorrect = {this.props.autoCorrect}
+            autoCapitalize = {this.props.autoCapitalize}
+            keyboardType = {this.props.keyboardType}
+            placeholder = {this.props.placeholder}
+            placeholderTextColor = {
               this.props.placeholderTextColor
                 ? this.props.placeholderTextColor
                 : Constants.Colors.Gray
             }
-            onChangeText={this.props.onChangeText}
-            onChange={event => this.onChange(event)}
-            value={this.props.value}
-            onFocus={() => this.onFocus()}
-            onBlur={() => this.setState({ isFocused: false })}
-            style={[styles.textInputStyle, this.props.textInputStyle]}
-            returnKeyType={this.props.returnKeyType}
-            onSubmitEditing={this.props.onSubmitEditing}
-            secureTextEntry={this.props.secureTextEntry}
-            maxLength={this.props.maxLength}
-            selectionColor={Constants.Colors.AccentColor}
-            underlineColorAndroid={Constants.Colors.Transparent}
-            autoFocus={this.props.autoFocus}
+            onChangeText = {this.props.onChangeText}
+            onChange = {event => this.onChange(event)}
+            value = {this.props.value}
+            onFocus = {() => this.onFocus()}
+            onBlur = {() => this.setState({ isFocused: false })}
+            style = {[styles.textInputStyle, this.props.textInputStyle]}
+            returnKeyType = {this.props.returnKeyType}
+            onSubmitEditing = {this.props.onSubmitEditing}
+            secureTextEntry = {this.props.secureTextEntry}
+            maxLength = {this.props.maxLength}
+            selectionColor = {Constants.Colors.AccentColor}
+            underlineColorAndroid = {Constants.Colors.Transparent}
+            autoFocus = {this.props.autoFocus}
           />
         </View>
       </View>

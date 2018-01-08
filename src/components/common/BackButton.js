@@ -26,19 +26,19 @@ type Props = {
 const BackButton = (props: Props) => {
   let { onPress, title, containerStyle, buttonStyle, textStyle, imageStyle } = props;
   return (
-    <View style={[styles.container, containerStyle]}>
+    <View style = {[styles.container, containerStyle]}>
       <TouchableHighlight
-        hitSlop={Constants.BaseStyle.HIT_SLOP}
-        underlayColor={Constants.Colors.Transparent}
-        style={[styles.button, buttonStyle]}
-        onPress={onPress}
+        hitSlop = {Constants.BaseStyle.HIT_SLOP}
+        underlayColor = {Constants.Colors.Transparent}
+        style = {[styles.button, buttonStyle]}
+        onPress = {onPress}
       >
         {title ? (
-          <Text style={[styles.textStyle, textStyle]}>{title}</Text>
+          <Text style = {[styles.textStyle, textStyle]}>{title}</Text>
         ) : (
           <Image
-            source={Constants.Images.ic_nav_white_back}
-            style={[styles.backImage, imageStyle]}
+            source = {Constants.Images.ic_nav_white_back}
+            style = {[styles.backImage, imageStyle]}
           />
         )}
       </TouchableHighlight>

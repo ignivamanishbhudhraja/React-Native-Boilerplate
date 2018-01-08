@@ -24,7 +24,6 @@
     "internet-off": "sudo ifconfig en0 down",
     "test": "jest",
     "lint": "./node_modules/.bin/eslint . --ext .js",
-    "prettify": "prettier --write \"**/*.json\" \"**/*.js\"",
     "precommit": "lint-staged"
   },
   "dependencies": {

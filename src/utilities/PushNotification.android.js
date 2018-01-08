@@ -86,22 +86,23 @@ export function onNotificationRedirection(res, store) {
 
     // Check user role.
     switch (userRole) {
-      case 'Consumer':
-        dashboard = 'Dashboard';
-        notification = 'CustomerNotifications';
-        break;
-      default:
-        dashboard = 'ServiceDashboard';
-        notification = 'ProviderNotifications';
-        break;
+    case 'Consumer':
+      dashboard = 'Dashboard';
+      notification = 'CustomerNotifications';
+      break;
+    default:
+      dashboard = 'ServiceDashboard';
+      notification = 'ProviderNotifications';
+      break;
     }
     // Navigate user based on their role to specific job.
     switch (parseInt(res.notificationType)) {
-      case 1: // Takes user to Notifications page.
-        break;
-      default:
-        // Take User to Dashboard.
-        break;
+    case 1: // Takes user to Notifications page.
+      break;
+    default:
+      console.log('notification ', notification, dashboard);
+      // Take User to Dashboard.
+      break;
     }
   }
   //Finish Notification

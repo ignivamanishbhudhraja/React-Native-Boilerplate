@@ -34,17 +34,17 @@ const StatusBarShape = {
 
 function getButtonElement(data, style) {
   return (
-    <View style={styles.navBarButtonContainer}>
+    <View style = {styles.navBarButtonContainer}>
       {!data || data.props ? (
         data
       ) : (
         <NavbarButton
-          title={data.title}
-          style={[data.style, style]}
-          tintColor={data.tintColor}
-          handler={data.handler}
-          accessible={data.accessible}
-          accessibilityLabel={data.accessibilityLabel}
+          title = {data.title}
+          style = {[data.style, style]}
+          tintColor = {data.tintColor}
+          handler = {data.handler}
+          accessible = {data.accessible}
+          accessibilityLabel = {data.accessibilityLabel}
         />
       )}
     </View>
@@ -53,12 +53,12 @@ function getButtonElement(data, style) {
 
 function getTitleElement(data) {
   if (!data || data.props) {
-    return <View style={styles.customTitle}>{data}</View>;
+    return <View style = {styles.customTitle}>{data}</View>;
   }
   const colorStyle = data.tintColor ? { color: data.tintColor } : null;
   return (
-    <View style={styles.navBarTitleContainer}>
-      <Text style={[styles.navBarTitleText, data.style, colorStyle]}>{data.title}</Text>
+    <View style = {styles.navBarTitleContainer}>
+      <Text style = {[styles.navBarTitleText, data.style, colorStyle]}>{data.title}</Text>
     </View>
   );
 }
@@ -135,14 +135,14 @@ export default class NavigationBar extends Component {
 
     if (Platform.OS === 'ios') {
       statusBar = !this.props.statusBar.hidden ? (
-        <View style={[styles.statusBar, customStatusBarTintColor]} />
+        <View style = {[styles.statusBar, customStatusBarTintColor]} />
       ) : null;
     }
 
     return (
-      <View style={[styles.navBarContainer, containerStyle, customTintColor]}>
+      <View style = {[styles.navBarContainer, containerStyle, customTintColor]}>
         {statusBar}
-        <View style={[styles.navBar, style]}>
+        <View style = {[styles.navBar, style]}>
           {getTitleElement(title)}
           {getButtonElement(leftButton, { marginLeft: 8 })}
           {getButtonElement(rightButton, { marginRight: 8 })}

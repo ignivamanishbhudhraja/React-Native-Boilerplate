@@ -30,13 +30,13 @@ const initialState: State = {
 
 export default function reducer(state: State = initialState, action: Action): State {
   switch (action.type) {
-    case Actions.SHOW_LOADER:
-      return { ...state, isLoading: true };
+  case Actions.SHOW_LOADER:
+    return { ...state, isLoading: true };
 
-    case Actions.HIDE_LOADER:
-      return { ...state, isLoading: false };
+  case Actions.HIDE_LOADER:
+    return { ...state, isLoading: false };
 
-    default:
-      return state;
+  default:
+    return state;
   }
 }

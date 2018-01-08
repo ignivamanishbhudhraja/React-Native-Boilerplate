@@ -105,7 +105,7 @@ export default class InputText extends React.Component<Props, State> {
   render() {
     return (
       <View
-        style={[
+        style = {[
           styles.containerStyle,
           this.props.containerStyle,
           {
@@ -115,46 +115,46 @@ export default class InputText extends React.Component<Props, State> {
           }
         ]}
       >
-        <Text style={[styles.labelStyle, this.props.labelStyle]}>{this.props.labelText}</Text>
+        <Text style = {[styles.labelStyle, this.props.labelStyle]}>{this.props.labelText}</Text>
 
-        <View style={styles.textInputContainer}>
+        <View style = {styles.textInputContainer}>
           {this.props.image0 && (
-            <TouchableOpacity hitSlop={Constants.HIT_SLOP} onPress={this.props.onImagePress}>
+            <TouchableOpacity hitSlop = {Constants.HIT_SLOP} onPress = {this.props.onImagePress}>
               <Image
-                resizeMode="contain"
-                source={this.props.image0}
-                style={[styles.image0Style, this.props.image0Style]}
+                resizeMode = "contain"
+                source = {this.props.image0}
+                style = {[styles.image0Style, this.props.image0Style]}
               />
             </TouchableOpacity>
           )}
           <TextInput
-            ref={textInput => (this.textInput = textInput)}
-            autoFocus={this.props.autoFocus}
-            autoCorrect={this.props.autoCorrect}
-            autoCapitalize={this.props.autoCapitalize}
-            keyboardType={this.props.keyboardType}
-            placeholder={this.props.placeholder}
-            placeholderTextColor={this.props.placeholderTextColor}
-            onChangeText={this.props.onChangeText}
-            onChange={event => this.onChange(event)}
-            value={this.props.value}
-            editable={!this.props.editable}
-            onFocus={() => this.onFocus()}
-            onBlur={() => this.setState({ isFocused: false })}
-            style={[styles.textInputStyle, this.props.textInputStyle]}
-            returnKeyType={this.props.returnKeyType}
-            onSubmitEditing={this.props.onSubmitEditing}
-            secureTextEntry={this.props.secureTextEntry}
-            maxLength={this.props.maxLength}
-            selectionColor={Constants.Colors.AccentColor}
-            underlineColorAndroid={Constants.Colors.Transparent}
+            ref = {textInput => (this.textInput = textInput)}
+            autoFocus = {this.props.autoFocus}
+            autoCorrect = {this.props.autoCorrect}
+            autoCapitalize = {this.props.autoCapitalize}
+            keyboardType = {this.props.keyboardType}
+            placeholder = {this.props.placeholder}
+            placeholderTextColor = {this.props.placeholderTextColor}
+            onChangeText = {this.props.onChangeText}
+            onChange = {event => this.onChange(event)}
+            value = {this.props.value}
+            editable = {!this.props.editable}
+            onFocus = {() => this.onFocus()}
+            onBlur = {() => this.setState({ isFocused: false })}
+            style = {[styles.textInputStyle, this.props.textInputStyle]}
+            returnKeyType = {this.props.returnKeyType}
+            onSubmitEditing = {this.props.onSubmitEditing}
+            secureTextEntry = {this.props.secureTextEntry}
+            maxLength = {this.props.maxLength}
+            selectionColor = {Constants.Colors.AccentColor}
+            underlineColorAndroid = {Constants.Colors.Transparent}
           />
           {this.props.image && (
-            <TouchableOpacity onPress={this.props.onImagePress}>
+            <TouchableOpacity onPress = {this.props.onImagePress}>
               <Image
-                resizeMode="contain"
-                source={this.props.image}
-                style={[styles.imageStyle, this.props.imageStyle]}
+                resizeMode = "contain"
+                source = {this.props.image}
+                style = {[styles.imageStyle, this.props.imageStyle]}
               />
             </TouchableOpacity>
           )}

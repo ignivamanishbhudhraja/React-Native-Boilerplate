@@ -54,39 +54,39 @@ export default class DateTimePicker extends React.Component<Props, State> {
   // Default render function
   render() {
     return (
-      <View style={styles.mainViewContainer}>
-        <View style={styles.modalContainer}>
-          <View style={styles.modalButtonsContainer}>
-            <TouchableOpacity style={styles.container} onPress={() => this.props.closePicker(null)}>
-              <Text style={styles.cancelButton}>{'Cancel'}</Text>
+      <View style = {styles.mainViewContainer}>
+        <View style = {styles.modalContainer}>
+          <View style = {styles.modalButtonsContainer}>
+            <TouchableOpacity style = {styles.container} onPress = {() => this.props.closePicker(null)}>
+              <Text style = {styles.cancelButton}>{'Cancel'}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.container}
-              onPress={() => {
+              style = {styles.container}
+              onPress = {() => {
                 this.props.closePicker(this.state.date);
               }}
             >
-              <Text style={styles.doneButton}>{'Done'}</Text>
+              <Text style = {styles.doneButton}>{'Done'}</Text>
             </TouchableOpacity>
           </View>
 
-          <View style={styles.picker}>
+          <View style = {styles.picker}>
             {Platform.OS === 'ios' ? (
               <DatePickerIOS
-                date={this.state.date}
-                mode="time"
-                timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
-                onDateChange={date => this.setState({ date: date })}
-                minuteInterval={10}
+                date = {this.state.date}
+                mode = "time"
+                timeZoneOffsetInMinutes = {this.state.timeZoneOffsetInHours * 60}
+                onDateChange = {date => this.setState({ date: date })}
+                minuteInterval = {10}
               />
             ) : (
               <TimePickerAndroid
-                date={this.state.date}
-                mode="time"
-                timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
-                onDateChange={date => this.setState({ date: date })}
-                minuteInterval={10}
+                date = {this.state.date}
+                mode = "time"
+                timeZoneOffsetInMinutes = {this.state.timeZoneOffsetInHours * 60}
+                onDateChange = {date => this.setState({ date: date })}
+                minuteInterval = {10}
               />
             )}
           </View>

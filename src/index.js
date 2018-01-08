@@ -91,13 +91,13 @@ class Application extends React.Component<{}> {
    * */
   render() {
     return (
-      <View style={styles.container}>
-        <ApolloProvider client={client}>
-          <Provider store={store}>
+      <View style = {styles.container}>
+        <ApolloProvider client = {client}>
+          <Provider store = {store}>
             <PersistGate
-              loading={<Loader />}
-              onBeforeLift={this.onBeforeLift}
-              persistor={persistor}
+              loading = {<Loader />}
+              onBeforeLift = {this.onBeforeLift}
+              persistor = {persistor}
             >
               <Root />
             </PersistGate>
@@ -105,8 +105,8 @@ class Application extends React.Component<{}> {
         </ApolloProvider>
         {Platform.OS !== 'android' && (
           <Notification
-            backgroundColour={Constants.Colors.White}
-            ref={ref => {
+            backgroundColour = {Constants.Colors.White}
+            ref = {ref => {
               this.notification = ref;
             }}
           />

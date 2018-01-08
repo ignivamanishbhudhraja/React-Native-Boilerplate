@@ -19,7 +19,7 @@ type Props = {
 };
 
 const ShadowView = (props: Props) => {
-  return <View style={[styles.container, props.containerStyle]}>{props.children}</View>;
+  return <View style = {[styles.container, props.containerStyle]}>{props.children}</View>;
 };
 
 ShadowView.defaultProps = {
