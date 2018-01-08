@@ -82,7 +82,7 @@ class AppWithNavigationState extends React.Component<Props, State> {
 
   render() {
     const { dispatch, nav } = this.props;
-    return <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />;
+    return <AppNavigator navigation = {addNavigationHelpers({ dispatch, state: nav })} />;
   }
 }
 
