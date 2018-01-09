@@ -11,7 +11,7 @@ import Constants from '../../constants';
 import { Platform } from 'react-native';
 
 const NAV_BAR_CONTAINER = Platform.OS=='ios'?(Constants.BaseStyle.DEVICE_HEIGHT === 812 ? 84 : 64):44;
-const NAV_BAR_HEIGHT = Platform.OS=='ios'?NAV_BAR_CONTAINER-20:44;
+const NAV_BAR_HEIGHT = Platform.OS=='ios'?NAV_BAR_CONTAINER:44;
 const STATUS_BAR_HEIGHT = 0;
 const MARGIN_TOP = Constants.BaseStyle.DEVICE_HEIGHT === 812? Constants.BaseStyle.DEVICE_HEIGHT / 100 * 4: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 2.4;
 const MARGIN_HORIZONTAL = Constants.BaseStyle.DEVICE_WIDTH /100  *2;
@@ -31,7 +31,7 @@ module.exports = {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'stretch',
-    width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 101
+    width: Constants.BaseStyle.DEVICE_WIDTH
   },
   customTitle: {
     position: 'absolute',
