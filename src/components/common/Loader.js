@@ -10,14 +10,17 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import ReactMixin from 'react-mixin';
 import TimerMixin from 'react-timer-mixin';
 
-// type Props = {
-// };
 
-// type State = {
-//   visible: boolean
-// };
+/* @flow */
 
-class Loader extends React.Component {
+type Props = {
+};
+
+type State = {
+  visible: boolean
+};
+
+class Loader extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {

@@ -4,7 +4,7 @@
 "flow.useNPMPackagedFlow": true*/
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Avatar } from '../components/common';
+import { Avatar, Timer } from '../components/common';
 //import { Logger } from '../utilities';
 
 type Props = {
@@ -17,6 +17,7 @@ export default class NextFoodie extends React.Component<Props, void> {
       <View style = {styles.container}>
         <Text style = {styles.welcome}>{'Welcome to React Native!'}</Text>
         <Avatar user = {{ role: '1', photo: '' }} />
+        <Timer startTime = {30} />
       </View>
     );
   }

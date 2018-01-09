@@ -13,8 +13,8 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Constants from '../../constants';
 import TimerMixin from 'react-timer-mixin';
-// import ReactMixin from 'react-mixin';
-//import moment from 'moment';
+import ReactMixin from 'react-mixin';
+import moment from 'moment';
 
 type Props = {
   startTime: number,
@@ -25,7 +25,7 @@ type State = {
   startTime: number
 };
 
-export default class Timer extends React.Component<Props, State> {
+class Timer extends React.Component<Props, State> {
   timer: number;
   mixin: [TimerMixin];
   constructor(props: Object) {
@@ -36,11 +36,11 @@ export default class Timer extends React.Component<Props, State> {
   }
 
   componentWillMount() {
-    //this.runTimer();
+    this.runTimer();
   }
 
   componentWillUnmount() {
-    //this.clearInterval(this.timer);
+    this.clearInterval(this.timer);
   }
 
   /*
@@ -48,7 +48,7 @@ export default class Timer extends React.Component<Props, State> {
   */
 
   runTimer = () => {
-    /*let self = this;
+    let self = this;
     let runTime = new Date().getTime();
     this.timer = this.setInterval(() => {
       if (self.state.startTime - 1 < 1) {
@@ -60,7 +60,7 @@ export default class Timer extends React.Component<Props, State> {
       let duration = moment.duration(moment(new Date().getTime(), 'x').diff(moment(runTime, 'x')));
       let mins = duration.asSeconds().toFixed(0);
       self.setState({ startTime: self.props.startTime - mins });
-    }, 1000);*/
+    }, 1000);
   };
 
   render() {
@@ -87,3 +87,6 @@ const styles = StyleSheet.create({
     marginLeft: Constants.BaseStyle.DEVICE_WIDTH / 100 * 5
   }
 });
+
+ReactMixin(Timer.prototype, TimerMixin);
+export default Timer;
