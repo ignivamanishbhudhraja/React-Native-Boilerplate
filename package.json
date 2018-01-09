@@ -2,24 +2,27 @@
   "name": "ReactNativeBoilerplate",
   "version": "0.0.1",
   "private": true,
-  "keywords": ["react", "react-native", "js", "graphql", "redux"],
+  "keywords": [
+    "react",
+    "react-native",
+    "js",
+    "graphql",
+    "redux"
+  ],
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "build": "babel src/ -d lib/",
     "prepublish": "npm run build",
     "flow": "flow",
-    "bundle-ios":
-      "node node_modules/react-native/local-cli/cli.js bundle --entry-file index.ios.js --bundle-output iOS/main.jsbundle --platform 'ios' --assets-dest ./assets  --dev false --reset-cache",
-    "bundle-android":
-      "react-native bundle --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --platform android",
+    "bundle-ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file index.ios.js --bundle-output iOS/main.jsbundle --platform 'ios' --assets-dest ./assets  --dev false --reset-cache",
+    "bundle-android": "react-native bundle --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --platform android",
     "port-reset": "adb reverse tcp:8081 tcp:8080 && adb shell input keyevent 82",
     "reload": "adb shell input keyevent 82",
     "run-ios": "react-native run-ios",
     "run-android": "react-native run-android",
     "reset": "watchman watch-del-all && npm cache clean",
     "uninstall": "rm -rf node_modules && npm install",
-    "enable-remotedev-debugger":
-      "remotedev-debugger --hostname localhost --port 5678 --injectserver",
+    "enable-remotedev-debugger": "remotedev-debugger --hostname localhost --port 5678 --injectserver",
     "internet-on": "sudo ifconfig en0 up",
     "internet-off": "sudo ifconfig en0 down",
     "test": "jest",
@@ -53,6 +56,7 @@
     "react-native-loading-spinner-overlay": "^0.5.2",
     "react-native-permissions": "^1.0.6",
     "react-native-redux-toast": "^1.0.1",
+    "react-native-vector-icons": "^4.5.0",
     "react-navigation": "^1.0.0-beta.22",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",

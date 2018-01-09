@@ -37,10 +37,10 @@ type State = {
   newInstall: boolean,
   deviceToken: string
 };
-type PromiseAction = Promise<Action>;
-type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
-type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
 type GetState = () => State;
+type PromiseAction = Promise<Action>;
+type Dispatch = (action: Action | ThunkAction | PromiseAction | Array<Action>) => any;
+type ThunkAction = (dispatch: Dispatch, getState: GetState) => any;
 
 const initialState: State = {
   userDetails: null,

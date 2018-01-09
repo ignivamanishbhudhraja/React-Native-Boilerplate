@@ -5,7 +5,6 @@
  * */
 
 export { default as Avatar } from './Avatar';
-export { default as BackButton } from './BackButton';
 export { default as Background } from './Background';
 export { default as Button } from './Button';
 export { default as ComingSoon } from './ComingSoon';
@@ -18,3 +17,5 @@ export { default as NoRecords } from './NoRecord';
 export { default as Progress } from './Progress';
 export { default as SmallLink } from './SmallLink';
 export { default as Timer } from './Timer';
+export { default as Text } from './Text';
+export { default as NavigationBar } from '../navbar';

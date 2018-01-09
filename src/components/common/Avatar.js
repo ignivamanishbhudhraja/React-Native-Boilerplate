@@ -28,7 +28,9 @@ const Avatar = (props: Props) => {
   let { user, localPath, avatarStyle, container } = props;
   let defaultImage = '';
   if (localPath !== '') {
-    return <Image source = {{ uri: localPath }} style = {[defaultStyles.avatarStyle, avatarStyle]} />;
+    return (
+      <Image source = {{ uri: localPath }} style = {[defaultStyles.avatarStyle, avatarStyle]} />
+    );
   }
 
   if (!user || user.photo == '') {

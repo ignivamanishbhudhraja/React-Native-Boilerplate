@@ -6,17 +6,18 @@
  */
 
 import React, { Component } from 'react';
-import { StatusBar, Text, View, Platform } from 'react-native';
+import { StatusBar, View, Platform } from 'react-native';
 import PropTypes from 'prop-types';
-
+import ButtonText from '../common/Text';
 import NavbarButton from './buttons';
 import styles from './style';
 
 const ButtonShape = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   style: View.propTypes.style,
   handler: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  icon: PropTypes.string,
 };
 
 const TitleShape = {
@@ -35,18 +36,15 @@ const StatusBarShape = {
 function getButtonElement(data, style) {
   return (
     <View style = {styles.navBarButtonContainer}>
-      {!data || data.props ? (
-        data
-      ) : (
-        <NavbarButton
-          title = {data.title}
-          style = {[data.style, style]}
-          tintColor = {data.tintColor}
-          handler = {data.handler}
-          accessible = {data.accessible}
-          accessibilityLabel = {data.accessibilityLabel}
-        />
-      )}
+      <NavbarButton
+        title = {data.title}
+        style = {[data.style, style]}
+        tintColor = {data.tintColor}
+        onPress = {data.onPress}
+        icon = {data.icon}
+        accessible = {data.accessible}
+        accessibilityLabel = {data.accessibilityLabel}
+      />
     </View>
   );
 }
@@ -58,7 +56,9 @@ function getTitleElement(data) {
   const colorStyle = data.tintColor ? { color: data.tintColor } : null;
   return (
     <View style = {styles.navBarTitleContainer}>
-      <Text style = {[styles.navBarTitleText, data.style, colorStyle]}>{data.title}</Text>
+      <ButtonText  style = {[styles.navBarTitleText, data.style, colorStyle]}>
+        {data.title}
+      </ButtonText>
     </View>
   );
 }
@@ -91,7 +91,7 @@ export default class NavigationBar extends Component {
     tintColor: '',
     leftButton: null,
     rightButton: null,
-    title: null,
+    title: '',
     statusBar: {
       style: 'light-content',
       hidden: false,
@@ -115,11 +115,9 @@ export default class NavigationBar extends Component {
       if (statusBar.style) {
         StatusBar.setBarStyle(statusBar.style);
       }
-
       const animation = statusBar.hidden ? statusBar.hideAnimation : statusBar.showAnimation;
-
       StatusBar.showHideTransition = animation;
-      StatusBar.hidden = true;
+      StatusBar.hidden = false;
     }
   }
 

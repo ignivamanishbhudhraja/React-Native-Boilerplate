@@ -22,6 +22,9 @@ declare module 'redux-thunk' {
 declare module 'redux-persist' {
   declare module.exports: any;
 }
+declare module 'redux-persist/es/integration/react' {
+  declare module.exports: any;
+}
 declare module 'react-redux' {
   declare module.exports: any;
 }
@@ -37,39 +40,30 @@ declare module 'react-native-in-app-notification' {
 declare module 'react-apollo' {
   declare module.exports: any;
 }
-
 declare module 'react-native-redux-toast' {
   declare module.exports: any;
 }
-
 declare module 'react-mixin' {
   declare module.exports: any;
 }
-
 declare module 'react-timer-mixin' {
   declare module.exports: any;
 }
-
 declare module 'moment' {
   declare module.exports: any;
 }
-
 declare module 'prop-types' {
   declare module.exports: any;
 }
-
 declare module 'react-native-loading-spinner-overlay' {
   declare module.exports: any;
 }
-
 declare module 'lodash' {
   declare module.exports: any;
 }
-
 declare module './utilities' {
   declare module.exports: any;
 }
-
-declare module 'redux-persist/es/integration/react' {
+declare module 'react-native-vector-icons/FontAwesome' {
   declare module.exports: any;
 }

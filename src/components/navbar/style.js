@@ -10,20 +10,16 @@
 import Constants from '../../constants';
 import { Platform } from 'react-native';
 
-const NAV_BAR_HEIGHT = Constants.BaseStyle.DEVICE_HEIGHT === 812 ? 84 : 64;
+const NAV_BAR_CONTAINER = Platform.OS=='ios'?(Constants.BaseStyle.DEVICE_HEIGHT === 812 ? 84 : 64):44;
+const NAV_BAR_HEIGHT = Platform.OS=='ios'?NAV_BAR_CONTAINER-20:44;
 const STATUS_BAR_HEIGHT = 0;
+const MARGIN_TOP = Constants.BaseStyle.DEVICE_HEIGHT === 812? Constants.BaseStyle.DEVICE_HEIGHT / 100 * 4: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 2.4;
+const MARGIN_HORIZONTAL = Constants.BaseStyle.DEVICE_WIDTH /100  *2;
 
 module.exports = {
   navBarContainer: {
-    backgroundColor: Constants.Colors.PrimaryColor,
-    ...Platform.select({
-      android: {
-        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 8
-      },
-      ios: {
-        height: NAV_BAR_HEIGHT
-      }
-    }),
+    backgroundColor: Constants.Colors.NavigationColor,
+    height: NAV_BAR_CONTAINER,
     width: Constants.BaseStyle.DEVICE_WIDTH / 100 * 101
   },
   statusBar: {
@@ -31,14 +27,7 @@ module.exports = {
     backgroundColor: Constants.Colors.White
   },
   navBar: {
-    ...Platform.select({
-      android: {
-        height: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 6
-      },
-      ios: {
-        height: NAV_BAR_HEIGHT
-      }
-    }),
+    height: NAV_BAR_HEIGHT,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'stretch',
@@ -59,11 +48,17 @@ module.exports = {
   navBarButton: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginHorizontal: MARGIN_HORIZONTAL,
+    marginTop: MARGIN_TOP,
   },
   navBarButtonText: {
-    fontSize: 17,
+    ...Constants.Fonts.content,
     letterSpacing: 0.5
+  },
+  navBarButtonImage: {
+    height : Constants.BaseStyle.DEVICE_WIDTH/100*5,
+    width : Constants.BaseStyle.DEVICE_WIDTH/100*5
   },
   navBarTitleContainer: {
     position: 'absolute',
@@ -73,10 +68,7 @@ module.exports = {
     bottom: 0,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop:
-      Constants.BaseStyle.DEVICE_HEIGHT === 812
-        ? Constants.BaseStyle.DEVICE_HEIGHT / 100 * 4.6
-        : Constants.BaseStyle.DEVICE_HEIGHT / 100 * 3
+    marginTop: MARGIN_TOP
   },
   navBarTitleText: {
     color: Constants.Colors.White,

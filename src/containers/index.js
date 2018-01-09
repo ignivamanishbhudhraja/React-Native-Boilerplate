@@ -3,8 +3,8 @@
 /* "javascript.validate.enable": false,
 "flow.useNPMPackagedFlow": true*/
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Avatar, Timer } from '../components/common';
+import { StyleSheet, View } from 'react-native';
+import { Avatar, Text, Timer, NavigationBar } from '../components/common';
 //import { Logger } from '../utilities';
 
 type Props = {
@@ -12,12 +12,40 @@ type Props = {
 };
 
 export default class NextFoodie extends React.Component<Props, void> {
+
+  onForwordPress=()=>{
+    console.log('onForwordPress!');
+  }
+
+  onBackPress=()=>{
+    console.log('onBackPress!');
+  }
+
   render() {
+    const leftButtonConfig = {
+      onPress: this.onBackPress,
+    };
+
+    const rightButtonConfig = {
+      onPress: this.onForwordPress,
+      icon : 'angle-right'
+    };
+
+    const titleConfig = {
+      title: 'Hello, world',
+    };
     return (
       <View style = {styles.container}>
-        <Text style = {styles.welcome}>{'Welcome to React Native!'}</Text>
+        <NavigationBar
+          title = {titleConfig}
+          leftButton = {leftButtonConfig}
+          rightButton = {rightButtonConfig}
+        />
+        <Text style = {styles.welcome}>
+          {'Welcome to React Native!'}
+        </Text>
         <Avatar user = {{ role: '1', photo: '' }} />
-        <Timer startTime = {30} />
+        <Timer onFinish = {()=>console.log('timer finish')} startTime = {5} />
       </View>
     );
   }
@@ -26,8 +54,6 @@ export default class NextFoodie extends React.Component<Props, void> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
   },
   welcome: {
     fontSize: 20,

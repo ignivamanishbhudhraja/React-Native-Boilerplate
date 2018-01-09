@@ -15,10 +15,12 @@ import Constants from '../../constants';
 import TimerMixin from 'react-timer-mixin';
 import ReactMixin from 'react-mixin';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 
 type Props = {
   startTime: number,
-  style: View.propTypes.style
+  style: View.propTypes.style,
+  onFinish: PropTypes.func.isRequired,
 };
 
 type State = {
@@ -52,7 +54,7 @@ class Timer extends React.Component<Props, State> {
     let runTime = new Date().getTime();
     this.timer = this.setInterval(() => {
       if (self.state.startTime - 1 < 1) {
-        self.props.timeUp();
+        self.props.onFinish();
         self.clearInterval(this.timer);
         self.setState({ startTime: 0 });
         return;
