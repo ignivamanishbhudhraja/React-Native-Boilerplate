@@ -18,4 +18,5 @@ export { default as Progress } from './Progress';
 export { default as SmallLink } from './SmallLink';
 export { default as Timer } from './Timer';
 export { default as Text } from './Text';
+export { default as CardView } from './CardView';
 export { default as NavigationBar } from '../navbar';
