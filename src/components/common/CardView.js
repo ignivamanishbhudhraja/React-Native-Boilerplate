@@ -28,9 +28,7 @@ CardView.defaultProps = {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: Constants.BaseStyle.DEVICE_WIDTH,
-    height: Constants.BaseStyle.DEVICE_HEIGHT,
+    margin:Constants.BaseStyle.DEVICE_WIDTH/100*5,
     ...Constants.BaseStyle.SHADOW_STYLE
   }
 });

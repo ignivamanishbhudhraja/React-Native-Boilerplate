@@ -55,7 +55,7 @@ const BaseStyle = {
   SHADOW_STYLE: {
     shadowColor: '#737373',
     shadowOpacity: 0.4,
-    shadowRadius: 2,
+    shadowRadius: 5,
     shadowOffset: { width: 1, height: 1 },
     elevation: 5
   }
