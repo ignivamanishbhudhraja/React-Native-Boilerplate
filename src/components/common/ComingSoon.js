@@ -10,9 +10,10 @@
 'use strict';
 
 import React from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import Constants from '../../constants';
 import PropTypes from 'prop-types';
+import Text from './Text';
 
 type Props = {
   message: string,

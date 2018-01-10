@@ -9,13 +9,14 @@
 'use strict';
 
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Text as DefaultText } from 'react-native';
 import Constants from '../../constants';
+import Text from './Text';
 
 type Props = {
   info: string,
   container: View.propTypes.style,
-  textStyle: Text.propTypes.style
+  textStyle: DefaultText.propTypes.style
 };
 
 const NoRecord = (props: Props) => {

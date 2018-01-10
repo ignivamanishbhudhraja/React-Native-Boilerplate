@@ -10,14 +10,15 @@
 'use strict';
 
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text as DefaultText } from 'react-native';
 import Constants from '../../constants';
 import PropTypes from 'prop-types';
+import Text from './Text';
 
 type Props = {
   onPress: PropTypes.func.isRequired,
   text: string,
-  textStyle: Text.propTypes.style,
+  textStyle: DefaultText.propTypes.style,
   linkStyle: TouchableOpacity.propTypes.style
 };
 

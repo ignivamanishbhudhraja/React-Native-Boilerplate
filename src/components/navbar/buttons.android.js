@@ -8,10 +8,10 @@
 /* @flow */
 
 import React from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { TouchableNativeFeedback, View } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './style';
-import ButtonText from '../common/Text';
+import Text from '../common/Text';
 import Constants from '../../constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -31,7 +31,7 @@ const NavbarButton = (props: Props) => {
 
   if(!title){
     return(
-      <TouchableOpacity
+      <TouchableNativeFeedback
         style = {styles.navBarButton}
         onPress = {onPress}
         disabled = {disabled}
@@ -42,12 +42,12 @@ const NavbarButton = (props: Props) => {
         <View style = {style}>
           <Icon name = {icon} size = {45} color = {tintColor} />
         </View>
-      </TouchableOpacity>
+      </TouchableNativeFeedback>
     );
   }
 
   return (
-    <TouchableOpacity
+    <TouchableNativeFeedback
       style = {styles.navBarButton}
       onPress = {onPress}
       disabled = {disabled}
@@ -55,11 +55,11 @@ const NavbarButton = (props: Props) => {
       accessibilityLabel = {accessibilityLabel}
     >
       <View style = {style}>
-        <ButtonText style = {[styles.navBarButtonText, { color: tintColor }]}>
+        <Text style = {[styles.navBarButtonText, { color: tintColor }]}>
           {title}
-        </ButtonText>
+        </Text>
       </View>
-    </TouchableOpacity>
+    </TouchableNativeFeedback>
   );
 };
 

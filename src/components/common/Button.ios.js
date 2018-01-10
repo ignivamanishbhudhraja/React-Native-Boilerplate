@@ -10,49 +10,34 @@
 
 import React from 'react';
 import {
-  Text,
   StyleSheet,
   TouchableOpacity,
-  TouchableNativeFeedback,
   View,
-  Platform
+  Text as DefaultText
 } from 'react-native';
 import Constants from '../../constants';
 import PropTypes from 'prop-types';
+import Text from './Text';
 
 type Props = {
   onPress: PropTypes.func.isRequired,
   buttonStyle: View.propTypes.style,
-  textStyle: Text.propTypes.style,
+  textStyle: DefaultText.propTypes.style,
   buttonName: string,
   disabled: boolean
 };
 
 const Button = (props: Props) => {
   let { disabled, onPress, buttonStyle, buttonName, textStyle } = props;
-
-  if (Platform.OS == 'ios') {
-    return (
-      <TouchableOpacity
-        activeOpacity = {0.9}
-        style = {[styles.buttonStyle, buttonStyle]}
-        disabled = {disabled}
-        onPress = {onPress}
-      >
-        <Text style = {[styles.text, textStyle]}>{buttonName}</Text>
-      </TouchableOpacity>
-    );
-  }
-
   return (
-    <TouchableNativeFeedback
+    <TouchableOpacity
       activeOpacity = {0.9}
       style = {[styles.buttonStyle, buttonStyle]}
       disabled = {disabled}
       onPress = {onPress}
     >
       <Text style = {[styles.text, textStyle]}>{buttonName}</Text>
-    </TouchableNativeFeedback>
+    </TouchableOpacity>
   );
 };
 

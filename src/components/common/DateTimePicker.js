@@ -14,13 +14,13 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Text,
   Platform,
   DatePickerIOS,
   TimePickerAndroid
 } from 'react-native';
 import Constants from '../../constants';
 import PropTypes from 'prop-types';
+import Text from './Text';
 
 type Props = {
   closePicker: PropTypes.func.isRequired,

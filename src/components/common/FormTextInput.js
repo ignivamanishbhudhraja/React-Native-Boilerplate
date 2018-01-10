@@ -9,7 +9,7 @@
 
 'use strict';
 import React from 'react';
-import { View, Image, StyleSheet, TextInput, Text, Platform } from 'react-native';
+import { View, Image, StyleSheet, TextInput, Platform } from 'react-native';
 import Constants from '../../constants';
 import PropTypes from 'prop-types';
 
@@ -30,7 +30,6 @@ type Props = {
   value: string,
   autoCapitalize: string,
   iconStyle: Image.propTypes.style,
-  priceStyle: Text.propTypes.style,
   onChange: PropTypes.func.isRequired,
   autoCorrect: boolean
 };

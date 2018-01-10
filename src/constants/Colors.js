@@ -21,6 +21,7 @@ let colors = {
   DarkGrey: '#c5c5c5',
   LightGrey: '#f7f6f6',
   Transparent: 'transparent',
+  Translucent: 'rgba(0,0,0,.7)',
   White: '#ffffff',
   WhiteBlur: 'rgba(235,235,235,0.7)',
   WhiteSmoke: '#f4f5f7',

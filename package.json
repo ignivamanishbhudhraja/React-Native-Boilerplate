@@ -49,6 +49,7 @@
     "react-apollo": "^2.0.4",
     "react-mixin": "^4.0.0",
     "react-native": "0.45.1",
+    "react-native-animatable": "^1.2.4",
     "react-native-device-info": "^0.10.2",
     "react-native-fcm": "^11.1.0",
     "react-native-geocoder": "^0.4.6",

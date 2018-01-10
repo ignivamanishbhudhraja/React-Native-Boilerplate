@@ -10,12 +10,13 @@
 /* @flow */
 
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Constants from '../../constants';
 import TimerMixin from 'react-timer-mixin';
 import ReactMixin from 'react-mixin';
 import moment from 'moment';
 import PropTypes from 'prop-types';
+import Text from './Text';
 
 type Props = {
   startTime: number,

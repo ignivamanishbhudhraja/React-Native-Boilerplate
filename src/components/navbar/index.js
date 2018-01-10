@@ -8,7 +8,7 @@
 import React, { Component } from 'react';
 import { StatusBar, View, Platform } from 'react-native';
 import PropTypes from 'prop-types';
-import ButtonText from '../common/Text';
+import Text from '../common/Text';
 import NavbarButton from './buttons';
 import styles from './style';
 
@@ -56,9 +56,9 @@ function getTitleElement(data) {
   const colorStyle = data.tintColor ? { color: data.tintColor } : null;
   return (
     <View style = {styles.navBarTitleContainer}>
-      <ButtonText  style = {[styles.navBarTitleText, data.style, colorStyle]}>
+      <Text  style = {[styles.navBarTitleText, data.style, colorStyle]}>
         {data.title}
-      </ButtonText>
+      </Text>
     </View>
   );
 }

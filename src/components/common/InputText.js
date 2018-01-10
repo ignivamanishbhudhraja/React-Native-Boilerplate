@@ -8,8 +8,9 @@
 'use strict';
 /* @flow */
 import React from 'react';
-import { View, StyleSheet, TextInput, Text, Image, TouchableOpacity, Platform } from 'react-native';
+import { View, StyleSheet, TextInput, Image, TouchableOpacity, Platform } from 'react-native';
 import Constants from '../../constants';
+import Text from './Text';
 
 type Props = {
   onFocus: PropTypes.func.isRequired,

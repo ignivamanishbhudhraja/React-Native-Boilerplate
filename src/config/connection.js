@@ -38,7 +38,7 @@ export default class Connection {
     return mediaBase_url + _id;
   }
 
-  static getStaticPageWithUrl(url) {
+  static getStaticContent(url) {
     return staticPages + url;
   }
 }
