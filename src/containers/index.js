@@ -41,16 +41,13 @@ export default class NextFoodie extends React.Component<Props, void> {
           leftButton = {leftButtonConfig}
           rightButton = {rightButtonConfig}
         />
-        <Text style = {styles.welcome}>
-          {'Welcome to React Native!'}
-        </Text>
-        <Avatar user = {{ role: '1', photo: '' }} />
-        <Timer onFinish = {()=>console.log('timer finish')} startTime = {5} />
         <CardView>
           <Text style = {styles.welcome}>
             {'Welcome to React Native!'}
           </Text>
         </CardView>
+        <Avatar user = {{ role: '1', photo: '' }} />
+        <Timer onFinish = {()=>console.log('timer finish')} startTime = {5} />
       </View>
     );
   }
