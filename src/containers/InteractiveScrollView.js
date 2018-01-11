@@ -30,11 +30,13 @@ type State = {
   }
 };
 
-export default class BottomSheet extends React.Component<void,State> {
-  _draggedValue: ?number;
-  slidingPanel: ?Object;
+type Props = {};
 
-  constructor(props) {
+export default class BottomSheet extends React.Component<Props,State> {
+  _draggedValue: Animated;
+  slidingPanel: View;
+
+  constructor(props: Object) {
     super(props);
     this.state = {
       allowDragging : true,
@@ -46,7 +48,7 @@ export default class BottomSheet extends React.Component<void,State> {
     this._draggedValue = new Animated.Value(-120);
   }
 
-  _onScroll=({ nativeEvent })=> {
+  _onScroll=({ nativeEvent }: Object)=> {
     //console.log("contentOffset==> ", nativeEvent.contentOffset.y)
     if (nativeEvent.contentOffset.y <= 0 || (!this.state.allowDragging)) {
       this.setState({ allowDragging: false });
@@ -73,7 +75,7 @@ export default class BottomSheet extends React.Component<void,State> {
           allowDragging = {this.state.allowDragging}
           showBackdrop = {false}
           ref = {(c) => this.slidingPanel = c}
-          draggableRange = {this.props.draggableRange}
+          draggableRange = {this.state.draggableRange}
           onDrag = {(v) => this._draggedValue.setValue(v)}>
           <ScrollableTabView locked = {false} style = {styles.panel}>
             <ScrollView
@@ -106,8 +108,6 @@ export default class BottomSheet extends React.Component<void,State> {
     );
   }
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
