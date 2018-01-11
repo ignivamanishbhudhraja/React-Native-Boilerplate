@@ -14,7 +14,7 @@ type Props = {
 export default class NextFoodie extends React.Component<Props, void> {
 
   onForwordPress=()=>{
-    this.props.navigation.navigate("ScreenTwo");
+    this.props.navigation.navigate("InteractiveScrollView");
   }
 
   render() {

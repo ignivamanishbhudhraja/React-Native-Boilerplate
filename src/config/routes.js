@@ -7,12 +7,12 @@
 
 // Common
 import Loader from '../components/common/Loader';
-import { ScreenOne, ScreenTwo } from '../containers';
+import { ScreenOne, InteractiveScrollView } from '../containers';
 
 // Export application routes.
 export default {
   // Common
   Loader    : { screen: Loader },
   ScreenOne : { screen: ScreenOne },
-  ScreenTwo : { screen: ScreenTwo }
+  InteractiveScrollView : { screen: InteractiveScrollView }
 };
