@@ -18,7 +18,6 @@
 
 	On the command prompt run the following commands
 
-	```sh
 	$ git clone 
 
 	$ cd ReactNativeBoilerplate
@@ -30,14 +29,10 @@
 	2. Android
 
 ### Run on iOS
-
- 	* Opt #1:
-		* Run `npm run ios` in your terminal
+	Run `npm run ios` in your terminal
 
 ### Run on Android
-
-  * Opt #1:
-		* Run `npm run android` in your terminal
+	Run `npm run android` in your terminal
 
 ## Technologies and Frameworks Used
 
@@ -54,6 +49,11 @@
 	11. "redux-thunk": "^2.2.0",
 	12. "react-native-fcm": "^11.1.0",
 
+### VSCode setting for flow 
+  VSCode > Perferences > Setting ad below lines in user settings.
+
+	"flow.useNPMPackagedFlow": true,
+  "javascript.validate.enable": false,
 
 ## Author
 
