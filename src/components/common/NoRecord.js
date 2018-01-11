@@ -9,29 +9,42 @@
 'use strict';
 
 import React from 'react';
-import { StyleSheet, View, Text as DefaultText } from 'react-native';
+import { StyleSheet, View, Text as DefaultText, Image } from 'react-native';
 import Constants from '../../constants';
 import Text from './Text';
 
 type Props = {
+  headerInfo: string,
   info: string,
+  image: ?Object,
   container: View.propTypes.style,
-  textStyle: DefaultText.propTypes.style
+  imageStyle: Image.propTypes.style,
+  headerStyle: DefaultText.propTypes.style,
+  infoStyle: DefaultText.propTypes.style,
 };
 
 const NoRecord = (props: Props) => {
-  const { container, textStyle, info } = props;
+  const { container, headerStyle, infoStyle, imageStyle, image, info, headerInfo } = props;
   return (
     <View style = {[styles.container, container]}>
-      <Text style = {[styles.info, textStyle]}>{info}</Text>
+      {image &&
+      <View>
+        <Image style = {[styles.imageStyle,imageStyle]} source = {image}/>
+      </View>
+      }
+      <Text style = {[styles.headerStyle, headerStyle]}>{headerInfo}</Text>
+      <Text style = {[styles.infoStyle,infoStyle]}>{info}</Text>
     </View>
   );
 };
 
 NoRecord.defaultProps = {
-  info: 'No Record Found.',
+  headerInfo : 'No Record Found.',
+  info: '',
   container: {},
-  textStyle: {}
+  textStyle: {},
+  headerStyle:{},
+  image : null
 };
 
 const styles = StyleSheet.create({
@@ -42,11 +55,22 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center'
   },
-  info: {
+  headerStyle: {
     textAlign: 'center',
     color: Constants.Colors.Black,
-    marginTop: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 35,
-    ...Constants.Fonts.content
+    marginTop: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 2,
+    ...Constants.Fonts.contentBold,
+  },
+  infoStyle: {
+    textAlign: 'center',
+    color: Constants.Colors.LightBlack,
+    marginTop: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 1,
+    ...Constants.Fonts.contentBold
+  },
+  imageStyle:{
+    marginTop: Constants.BaseStyle.DEVICE_HEIGHT / 100 * 10,
+    height : Constants.BaseStyle.DEVICE_WIDTH/100*70,
+    width : Constants.BaseStyle.DEVICE_WIDTH/100*70
   }
 });
 

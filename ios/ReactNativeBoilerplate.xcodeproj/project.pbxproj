@@ -32,6 +32,7 @@
 		7097A60110344EE883FD2772 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F72168CEA1746F3BB9FF614 /* Entypo.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8E120B7A60A74E56A6A9099C /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D0223DBEF7C94C4DABFA082F /* SimpleLineIcons.ttf */; };
+		8E4B6AA55D984EC7B2C0115B /* libInteractable.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF1FDDE4B5C34F6CB64F61A6 /* libInteractable.a */; };
 		A949455E189A4B088E25CC0D /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08936DE897C6471687E82932 /* Foundation.ttf */; };
 		A96F54C2CDC74817B9F77254 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B57B7FF9A50547A99511FC2E /* Octicons.ttf */; };
 		B3FC4DA9C4CF43C6984C7573 /* libReactNativePermissions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18881757F98447A28ED7D7D5 /* libReactNativePermissions.a */; };
@@ -275,6 +276,13 @@
 			remoteGlobalIDString = 5DBEB1501B18CEA900B34395;
 			remoteInfo = RNVectorIcons;
 		};
+		C4EF24A42005FBDC009601E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D62DE2730F5348DAAF21C170 /* Interactable.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = CC0127971E3ACC3900B23C9F;
+			remoteInfo = Interactable;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -321,6 +329,8 @@
 		B57B7FF9A50547A99511FC2E /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		D0223DBEF7C94C4DABFA082F /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		D20CE28D4AFCE50D7C3F142C /* Pods-ReactNativeBoilerplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactNativeBoilerplate.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactNativeBoilerplate/Pods-ReactNativeBoilerplate.release.xcconfig"; sourceTree = "<group>"; };
+		D62DE2730F5348DAAF21C170 /* Interactable.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = Interactable.xcodeproj; path = "../node_modules/react-native-interactable/ios/Interactable.xcodeproj"; sourceTree = "<group>"; };
+		DF1FDDE4B5C34F6CB64F61A6 /* libInteractable.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libInteractable.a; sourceTree = "<group>"; };
 		EE8ACE7DD1364BDE8A7F547F /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
 		F7A59D48FBE842428B80BE44 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -355,6 +365,7 @@
 				0527113E41A05419DFA0B674 /* libPods-ReactNativeBoilerplate.a in Frameworks */,
 				CE050F5B0907480F8FE10233 /* libRNGeocoder.a in Frameworks */,
 				6A60D87A11804B79966C8BE2 /* libRNVectorIcons.a in Frameworks */,
+				8E4B6AA55D984EC7B2C0115B /* libInteractable.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,6 +533,7 @@
 				A050FED0C7504BFB9574DFCB /* RNDeviceInfo.xcodeproj */,
 				2708E491E0104EA18E0F114A /* RNGeocoder.xcodeproj */,
 				624ED305E2DE46D787B197A8 /* RNVectorIcons.xcodeproj */,
+				D62DE2730F5348DAAF21C170 /* Interactable.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -568,6 +580,7 @@
 				814BA85AE23E46FFB71983F1 /* libRNDeviceInfo.a */,
 				654DF86248214751AD34E035 /* libRNGeocoder.a */,
 				57F9B8A2439D4A2195CB4AEB /* libRNVectorIcons.a */,
+				DF1FDDE4B5C34F6CB64F61A6 /* libInteractable.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -608,6 +621,14 @@
 			isa = PBXGroup;
 			children = (
 				C4D14B852004D42B0078EA79 /* libRNVectorIcons.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C4EF24A12005FBDC009601E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C4EF24A52005FBDC009601E4 /* libInteractable.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -685,6 +706,10 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = DU2MUZ4C9A;
+						ProvisioningStyle = Manual;
+					};
 				};
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "ReactNativeBoilerplate" */;
@@ -699,6 +724,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = C4EF24A12005FBDC009601E4 /* Products */;
+					ProjectRef = D62DE2730F5348DAAF21C170 /* Interactable.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -997,6 +1026,13 @@
 			remoteRef = C4D14B842004D42B0078EA79 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		C4EF24A52005FBDC009601E4 /* libInteractable.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libInteractable.a;
+			remoteRef = C4EF24A42005FBDC009601E4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1150,12 +1186,14 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-geocoder/ios/RNGeocoder",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-interactable/lib/ios/Interactable",
 				);
 				INFOPLIST_FILE = ReactNativeBoilerplateTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1183,12 +1221,14 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-geocoder/ios/RNGeocoder",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-interactable/lib/ios/Interactable",
 				);
 				INFOPLIST_FILE = ReactNativeBoilerplateTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1209,8 +1249,11 @@
 			baseConfigurationReference = 95B152A93CA6385D92DF5035 /* Pods-ReactNativeBoilerplate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Irfan Ashraf (E32RQ3V3V7)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = DU2MUZ4C9A;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
@@ -1218,6 +1261,8 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-geocoder/ios/RNGeocoder",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-interactable/lib/ios/Interactable/**",
+					"$(SRCROOT)/../node_modules/react-native-interactable",
 				);
 				INFOPLIST_FILE = ReactNativeBoilerplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1226,8 +1271,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ReactNativeBoilerplate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobiyle;
 				PRODUCT_NAME = ReactNativeBoilerplate;
+				PROVISIONING_PROFILE = "6241b3d7-874b-4321-a94c-d27e4d263977";
+				PROVISIONING_PROFILE_SPECIFIER = "Mobiyle-Dev";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1237,7 +1284,10 @@
 			baseConfigurationReference = D20CE28D4AFCE50D7C3F142C /* Pods-ReactNativeBoilerplate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Irfan Ashraf (E32RQ3V3V7)";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DU2MUZ4C9A;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
@@ -1245,6 +1295,8 @@
 					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-geocoder/ios/RNGeocoder",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
+					"$(SRCROOT)/../node_modules/react-native-interactable/lib/ios/Interactable/**",
+					"$(SRCROOT)/../node_modules/react-native-interactable",
 				);
 				INFOPLIST_FILE = ReactNativeBoilerplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1253,8 +1305,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ReactNativeBoilerplate;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mobiyle;
 				PRODUCT_NAME = ReactNativeBoilerplate;
+				PROVISIONING_PROFILE = "6241b3d7-874b-4321-a94c-d27e4d263977";
+				PROVISIONING_PROFILE_SPECIFIER = "Mobiyle-Dev";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

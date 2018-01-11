@@ -5,6 +5,8 @@
  * @author: Manish Budhraja
  * */
 
+'use strict';
+
 import { setContext } from 'apollo-link-context';
 import { createHttpLink } from 'apollo-link-http';
 import { ApolloLink, from } from 'apollo-link';

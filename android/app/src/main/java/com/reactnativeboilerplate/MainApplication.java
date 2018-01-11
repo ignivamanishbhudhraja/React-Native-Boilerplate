@@ -3,6 +3,7 @@ package com.reactnativeboilerplate;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.wix.interactable.Interactable;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.devfd.RNGeocoder.RNGeocoderPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new Interactable(),
             new VectorIconsPackage(),
             new RNGeocoderPackage(),
             new RNDeviceInfo(),

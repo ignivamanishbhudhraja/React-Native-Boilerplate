@@ -142,8 +142,8 @@ export default class NavigationBar extends Component {
         {statusBar}
         <View style = {[styles.navBar, style]}>
           {getTitleElement(title)}
-          {getButtonElement(leftButton, { marginLeft: 8 })}
-          {getButtonElement(rightButton, { marginRight: 8 })}
+          {leftButton && getButtonElement(leftButton, { marginLeft: 8 })}
+          {rightButton && getButtonElement(rightButton, { marginRight: 8 })}
         </View>
       </View>
     );

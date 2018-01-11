@@ -67,7 +67,12 @@ declare module './utilities' {
 declare module 'react-native-vector-icons/FontAwesome' {
   declare module.exports: any;
 }
-
 declare module 'react-native-animatable'{
+  declare module.exports: any;
+}
+declare module 'react-native-interactable' {
+  declare module.exports: any;
+}
+declare module 'react-native-scrollable-tab-view'{
   declare module.exports: any;
 }

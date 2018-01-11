@@ -5,6 +5,8 @@
  * @author: Manish Budhraja
  * */
 
+'use strict';
+
 import { compose, applyMiddleware, createStore } from 'redux';
 import { persistStore } from 'redux-persist';
 import { Platform } from 'react-native';

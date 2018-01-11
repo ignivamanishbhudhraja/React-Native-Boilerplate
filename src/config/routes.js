@@ -7,11 +7,12 @@
 
 // Common
 import Loader from '../components/common/Loader';
-import Demo from '../containers';
+import { ScreenOne, ScreenTwo } from '../containers';
 
 // Export application routes.
 export default {
   // Common
-  Loader: { screen: Loader },
-  Demo: { screen: Demo }
+  Loader    : { screen: Loader },
+  ScreenOne : { screen: ScreenOne },
+  ScreenTwo : { screen: ScreenTwo }
 };

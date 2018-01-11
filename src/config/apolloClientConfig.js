@@ -7,6 +7,9 @@
  * @author: Manish Budhraja
  * */
 
+
+'use strict';
+
 import ApolloClient from 'apollo-client';
 import link from './apolloLinks';
 import cache from './apolloCache';

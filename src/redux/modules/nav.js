@@ -22,14 +22,14 @@ const initialState = AppNavigator.router.getStateForAction(
     index: 0,
     actions: [
       NavigationActions.navigate({
-        routeName: 'Loader'
+        routeName: 'ScreenOne'
       })
     ]
   })
 );
 
 export default function reducer(state = initialState, action) {
-  let firstState = 'Demo';
+  let firstState = 'ScreenOne';
 
   switch (action.type) {
   case Actions.Reset:
@@ -59,7 +59,7 @@ export default function reducer(state = initialState, action) {
     return AppNavigator.router.getStateForAction(
       NavigationActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Login' })]
+        actions: [NavigationActions.navigate({ routeName: 'ScreenOne' })]
       }),
       state
     );

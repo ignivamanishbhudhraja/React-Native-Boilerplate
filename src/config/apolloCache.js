@@ -5,6 +5,8 @@
  * @author: Manish Budhraja
  * */
 
+'use strict';
+
 import { InMemoryCache, IntrospectionFragmentMatcher } from 'apollo-cache-inmemory';
 
 /*
